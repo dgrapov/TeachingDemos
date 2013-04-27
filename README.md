@@ -1,4 +1,6 @@
 TeachingDemos
 =============
 
-Bioinformatics related demos and tutorials using the R programming language
+Bioinformatics related demos and tutorials using the R programming language.
+
+Check out some examples [HERE](https://github.com/dgrapov/TeachingDemos/wiki/_pages).
