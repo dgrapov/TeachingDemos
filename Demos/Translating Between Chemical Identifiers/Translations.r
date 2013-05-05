@@ -37,7 +37,11 @@ CSid<-results[miss.match,] # convert CIR ChemSpider Id to inChiKey
 results3<-CTSgetR(CSid,from="ChemSpider",to="InChIKey",parallel=FALSE)
 
 #compare keys
+<<<<<<< HEAD
 if(as.matrix(results3)==as.matrix(id[miss.match,,drop=FALSE]))cat("codes match!","\n") else cat("codes DO NOT match!","\n")
+=======
+if(results3==id[miss.match])cat("codes match!","\n") else cat("codes DO NOT match!","\n")
+>>>>>>> 527fe4c248ad2040b68cecee54e55a80e05bade5
 
 #here is a more advanced example for translating from one ID to many
 ##translate InchI Key to allpossible options available in CIR
@@ -71,12 +75,18 @@ CIR.error<-round(((sum(unlist(all.results.CIR)=="<h1>Page not found (404)</h1>")
 CTS.error<-round((sum(unlist(all.results.CTS)=="error")/length(unlist(id)))/length(CTS.options)*100,0)
 data.frame(CIR.error=CIR.error,CTS.error=CTS.error)
 #choose best
+<<<<<<< HEAD
 best<-c("all.results.CIR","all.results.CTS")[which.min(c(CIR.error,CTS.error))[1]] # [1] for tie breaker
 cat("Best results: ",best, "\n")
+=======
+best<-c("all.results.CIR","all.results.CTS")[which.min(c(CIR.error,CST.error))[1]] # [1] for tie breaker
+
+>>>>>>> 527fe4c248ad2040b68cecee54e55a80e05bade5
 #save the best result to a .csv 
 write.csv(get(best),file="best translation.csv")
 
 #get image for querry using CIR
+<<<<<<< HEAD
 #get image URL from InchIKey
 id<-"ZKHQWZAMYRWXGA-KQYNXXCUSA-N"
 image.url<-as.character(unlist(CIRgetR(id,to= "image",return.all=FALSE) ))
@@ -85,6 +95,13 @@ install.packages("caTools")
 library(caTools)
 gif <- read.gif(image.url, verbose = TRUE, flip = TRUE)
 par(pin=c(2,2)) # change this for multiple gif results
+=======
+download.file("http://cactus.nci.nih.gov/chemical/structure/ZKHQWZAMYRWXGA-KQYNXXCUSA-N/image","image.gif")
+install.packages("caTools")
+library(caTools)
+gif <- read.gif(image.url, verbose = TRUE, flip = TRUE)
+par(pin=c(2,2))
+>>>>>>> 527fe4c248ad2040b68cecee54e55a80e05bade5
 image(gif$image, col = gif$col, main = gif$comment, frame.plot=FALSE,xaxt="n", yaxt="n") 
 
 
