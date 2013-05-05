@@ -3,7 +3,7 @@ TeachingDemos
 
 Bioinformatics related demos and tutorials using the R programming language.
 
-[Principal Components Analysis]('https://github.com/dgrapov/TeachingDemos/wiki/Partial-Least-Squares-(PLS)') (fast and simple)
+[Principal Components Analysis]('https://github.com/dgrapov/TeachingDemos/wiki/Partial-Least-Squares-(PLS) (fast and simple)
 
 [Partial Least Squares](https://github.com/dgrapov/TeachingDemos/wiki/Principal-Components-Analysis-(PCA)) (fast and simple)
 
