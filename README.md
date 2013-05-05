@@ -12,6 +12,6 @@ Bioinformatics related demos and tutorials using the R programming language.
 [Translating Between Chemical Identifiers](https://github.com/dgrapov/TeachingDemos/wiki/Translating-Between-Chemical-Identifiers)  (intermediate)
 
 
-# Advanced ( 1 hr)
+# Advanced 
 [Building Biochemical and Chemical Similarity Networks](https://github.com/dgrapov/TeachingDemos/wiki/Biochemical-and-Chemical-Similarity-Networks) (advanced)
 
