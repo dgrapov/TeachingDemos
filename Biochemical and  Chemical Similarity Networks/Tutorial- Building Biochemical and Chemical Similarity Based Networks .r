@@ -1,5 +1,5 @@
 #load needed functions: package devium which is stored on a github 
-source("http://pastebin.com/raw.php?i=Y0YYEBia")
+source("http://pastebin.com/raw.php?i=JVyTrYRD")
 
 # get sample chemical identifiers here:https://docs.google.com/spreadsheet/ccc?key=0Ap1AEMfo-fh9dFZSSm5WSHlqMC1QdkNMWFZCeWdVbEE#gid=1
 #Pubchem CIDs = cids
