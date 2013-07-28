@@ -16,7 +16,6 @@ comp<-3 # maximum number of latent variables (LVs)
 pls.y<-simple.y
 
 #### Make exploratory model. Fit 10 latent variable (LVs) and 10 orthogonal latent variables (OLVs). 
-```{r,hide=TRUE}
 #scale data 
 scaled.data<-data.frame(scale(data,scale=T,center=T)) 
 
@@ -24,13 +23,13 @@ comp<-ocomp<-10 # maximum number of latent variables (LVs)
 pls.y<-simple.y
 
 mods1<-OSC.correction(progress=FALSE,pls.y=pls.y,pls.data=scaled.data,comp=comp,OSC.comp=ocomp,validation = "LOO",method="oscorespls",cv.scale=F)
-```
+
 
 
 #### view root mean squared error of prediction for various number of OLV models. Note X-axis reffers to total number of OLVs not LVs, hence the start at 0.
-```{r}
+
 plot.OSC.results(obj=mods1,plot="RMSEP",groups=group)
-```
+
 
 
 
@@ -79,7 +78,7 @@ plot.PLS.results(obj=final,plot="scores",groups=group)
 
 #an alternative to modeling a multiple Ys is to define a single Y based on the multiple columns
 # this will try to organize all group scores in one dimension (LV1)
-pls.y<-as.numeric(as.factor(join.columns(complex.y))) # create numeric representation
+pls.y<-matrix(as.numeric(as.factor(join.columns(complex.y))),,1) # create numeric representation
 #fit 1:limit LV/OLV models to overview optimal LV and OLV
 optimal.model<-optimize.OPLS(max.LV=comp, # max LV
 							tolerance =0.01, #tolerance for accepting higher error models but which are simpler
@@ -88,7 +87,9 @@ optimal.model<-optimize.OPLS(max.LV=comp, # max LV
 							progress=FALSE) 
 #view suggestions
 optimal.model
-# suggests 3 components all OLV...
+
+# currently single LV models will caause an error so limit LV minimium to 2
+if(optimal.model$LV==1){optimal.model$LV<-2}
 
 #build optimized model based on optimal.model suggestions
 mods1<-OSC.correction(progress=FALSE,pls.y=pls.y,pls.data=scaled.data,comp=optimal.model$LV,OSC.comp=optimal.model$OLV,validation = "LOO",method="oscorespls",cv.scale=T)

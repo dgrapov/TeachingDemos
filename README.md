@@ -10,6 +10,7 @@ Bioinformatics related demos and tutorials using the R programming language.
 
 [Partial Least Squares (PLS)](https://github.com/dgrapov/TeachingDemos/wiki/Partial-Least-Squares) (fast and simple)
 
+[Orthogonal Partial Least Squares (OPLS)](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/OPLS/OPLS%20example.md)
 
 ## Database query and translation
 [Translating Between Chemical Identifiers](https://github.com/dgrapov/TeachingDemos/wiki/Translating-Between-Chemical-Identifiers)  (intermediate)

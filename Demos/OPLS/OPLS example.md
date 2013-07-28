@@ -222,21 +222,13 @@ plot.PLS.results(obj = final, plot = "scores", groups = group)
 #### An alternative to modeling a multiple Ys is to define a single Y based on the multiple columns. This will try to organize all group scores in one dimension (LV1).
 
 ```r
-pls.y<-as.numeric(as.factor(join.columns(complex.y))) # create numeric representation
+pls.y<-matrix(as.numeric(as.factor(join.columns(complex.y))),,1) # create numeric representation
 #fit 1:limit LV/OLV models to overview optimal LV and OLV
 optimal.model<-optimize.OPLS(max.LV=comp, # max LV
   						tolerance =0.01, #tolerance for accepting higher error models but which are simpler
 							pls.y=pls.y,pls.data=scaled.data, # y and data
 							validation = "LOO",method="oscorespls",cv.scale=F,# see pls for theses options
 							progress=FALSE) 
-```
-
-```
-## Warning: first element used of 'each' argument
-```
-
-```
-## Error: argument of length 0
 ```
 
 
@@ -248,30 +240,21 @@ optimal.model
 
 ```
 ## $best
-##     RMSEP.1 RMSEP.2 LV OLV pls.y delta.tmp.min.
-## 54   0.4541  0.4528  5   2     1      5.140e-03
-## 78   0.4531  0.4521  5   3     1      4.435e-03
-## 102  0.4487  0.4476  5   4     1      0.000e+00
-## 126  0.4488  0.4478  5   5     1      1.326e-04
-## 30   0.4541  0.4528  2   2     2      3.125e-03
-## 50   0.4506  0.4497  4   2     2      6.253e-05
-## 70   0.4520  0.4511  4   3     2      1.458e-03
-## 90   0.4506  0.4496  4   4     2      0.000e+00
-## 14   0.4703  0.4693  1   1     3      2.804e-03
-## 75   0.4692  0.4676  4   3     3      1.105e-03
-## 95   0.4680  0.4665  4   4     3      0.000e+00
-## 66   0.4778  0.4763  5   2     3      9.788e-03
-## 114  0.4726  0.4711  5   4     3      4.601e-03
-## 138  0.4700  0.4686  5   5     3      2.048e-03
-## 16   0.4911  0.4910  1   1     4      0.000e+00
-## 24   0.4989  0.4981  2   1     4      7.131e-03
-## 36   0.4995  0.4987  2   2     4      7.718e-03
+##   RMSEP.1 RMSEP.2 LV OLV pls.y delta.tmp.min.
+## 4   4.103    4.09  1   1     1              0
 ## 
 ## $LV
-## [1] 5
+## [1] 1
 ## 
 ## $OLV
-## [1] 4
+## [1] 1
+```
+
+```r
+# currently single LV models will cause an error so limit LV minimium to 2
+if (optimal.model$LV == 1) {
+    optimal.model$LV <- 2
+}
 ```
 
 #### Build optimized model based on optimal.model suggestions.

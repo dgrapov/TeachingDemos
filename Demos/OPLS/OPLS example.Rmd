@@ -113,7 +113,7 @@ plot.PLS.results(obj=final,plot="scores",groups=group)
 
 #### An alternative to modeling a multiple Ys is to define a single Y based on the multiple columns. This will try to organize all group scores in one dimension (LV1).
 ```{r,hide=TRUE}
-pls.y<-as.numeric(as.factor(join.columns(complex.y))) # create numeric representation
+pls.y<-matrix(as.numeric(as.factor(join.columns(complex.y))),,1) # create numeric representation
 #fit 1:limit LV/OLV models to overview optimal LV and OLV
 optimal.model<-optimize.OPLS(max.LV=comp, # max LV
   						tolerance =0.01, #tolerance for accepting higher error models but which are simpler
@@ -125,6 +125,8 @@ optimal.model<-optimize.OPLS(max.LV=comp, # max LV
 #### View suggestions.
 ```{r}
 optimal.model
+# currently single LV models will cause an error so limit LV minimium to 2
+if(optimal.model$LV==1){optimal.model$LV<-2}
 ```
 #### Build optimized model based on optimal.model suggestions.
 ```{r,hide=TRUE}
