@@ -14,20 +14,42 @@ scaled.data<-data.frame(scale(data,scale=T,center=T))
 # make exploratory model to determine orthogonal LV (OLV) number 
 comp<-3 # maximum number of latent variables (LVs)
 pls.y<-simple.y
+
+#### Make exploratory model. Fit 10 latent variable (LVs) and 10 orthogonal latent variables (OLVs). 
+```{r,hide=TRUE}
+#scale data 
+scaled.data<-data.frame(scale(data,scale=T,center=T)) 
+
+comp<-ocomp<-10 # maximum number of latent variables (LVs)
+pls.y<-simple.y
+
+mods1<-OSC.correction(progress=FALSE,pls.y=pls.y,pls.data=scaled.data,comp=comp,OSC.comp=ocomp,validation = "LOO",method="oscorespls",cv.scale=F)
+```
+
+
+#### view root mean squared error of prediction for various number of OLV models. Note X-axis reffers to total number of OLVs not LVs, hence the start at 0.
+```{r}
+plot.OSC.results(obj=mods1,plot="RMSEP",groups=group)
+```
+
+
+
 #fit 1:limit LV/OLV models to overview optimal LV and OLV
 optimal.model<-optimize.OPLS(max.LV=comp, # max LV
 							tolerance =0.01, #tolerance for accepting higher error models but which are simpler
 							pls.y=pls.y,pls.data=scaled.data, # y and data
-							validation = "LOO",method="oscorespls",cv.scale=F) # see pls for theses options
-
+							validation = "LOO",method="oscorespls",cv.scale=F,# see pls for theses options
+							progress=FALSE) 
 #view suggestions
 optimal.model
 # suggests 3 components all OLV...
 
 #build optimized model based on optimal.model suggestions
-mods1<-OSC.correction(pls.y=pls.y,pls.data=scaled.data,comp=optimal.model$LV,OSC.comp=optimal.model$OLV,validation = "LOO",method="oscorespls",cv.scale=T)
+mods1<-OSC.correction(progress=FALSE,pls.y=pls.y,pls.data=scaled.data,comp=optimal.model$LV,OSC.comp=optimal.model$OLV,validation = "LOO",method="oscorespls",cv.scale=T)
 final<-get.OSC.model(obj=mods1,OSC.comp=optimal.model$OLV) # get all model information
 
+# view RMSEP
+plot.PLS.results(obj=final,plot="RMSEP",groups=group)
 #view model scores
 group<-factor(join.columns(pls.y))#visualize levels of y 
 plot.PLS.results(obj=final,plot="scores",groups=group)
@@ -40,14 +62,15 @@ pls.y<-complex.y
 optimal.model<-optimize.OPLS(max.LV=comp, # max LV
 							tolerance =0.01, #tolerance for accepting higher error models but which are simpler
 							pls.y=pls.y,pls.data=scaled.data, # y and data
-							validation = "LOO",method="oscorespls",cv.scale=F) # see pls for theses options
+							validation = "LOO",method="oscorespls",cv.scale=F,# see pls for theses options
+							progress=FALSE) 
 
 #view suggestions
 optimal.model
 # suggests 3 components all OLV...
 
 #build optimized model based on optimal.model suggestions
-mods1<-OSC.correction(pls.y=pls.y,pls.data=scaled.data,comp=optimal.model$LV,OSC.comp=optimal.model$OLV,validation = "LOO",method="oscorespls",cv.scale=T)
+mods1<-OSC.correction(progress=FALSE,pls.y=pls.y,pls.data=scaled.data,comp=optimal.model$LV,OSC.comp=optimal.model$OLV,validation = "LOO",method="oscorespls",cv.scale=T)
 final<-get.OSC.model(obj=mods1,OSC.comp=optimal.model$OLV) # get all model information
 
 #view model scores
@@ -61,14 +84,14 @@ pls.y<-as.numeric(as.factor(join.columns(complex.y))) # create numeric represent
 optimal.model<-optimize.OPLS(max.LV=comp, # max LV
 							tolerance =0.01, #tolerance for accepting higher error models but which are simpler
 							pls.y=pls.y,pls.data=scaled.data, # y and data
-							validation = "LOO",method="oscorespls",cv.scale=F) # see pls for theses options
-
+							validation = "LOO",method="oscorespls",cv.scale=F,# see pls for theses options
+							progress=FALSE) 
 #view suggestions
 optimal.model
 # suggests 3 components all OLV...
 
 #build optimized model based on optimal.model suggestions
-mods1<-OSC.correction(pls.y=pls.y,pls.data=scaled.data,comp=optimal.model$LV,OSC.comp=optimal.model$OLV,validation = "LOO",method="oscorespls",cv.scale=T)
+mods1<-OSC.correction(progress=FALSE,pls.y=pls.y,pls.data=scaled.data,comp=optimal.model$LV,OSC.comp=optimal.model$OLV,validation = "LOO",method="oscorespls",cv.scale=T)
 final<-get.OSC.model(obj=mods1,OSC.comp=optimal.model$OLV) # get all model information
 
 #view model scores
