@@ -20,7 +20,7 @@ complex.y <- matrix(sample(1:2, 400, replace = T), , 4)
 ```
 
 
-#### Make exploratory model. Fit 10 latent variable (LVs) and 10 orthogonal latent variables (OLVs). 
+#### Make exploratory model. Fit 5 latent variable (LVs) and 5 orthogonal latent variables (OLVs). 
 
 ```r
 # scale data
