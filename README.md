@@ -4,9 +4,9 @@ TeachingDemos
 Bioinformatics related demos and tutorials using the R programming language.
 
 #Interactive Demos
-*[Data Visualization](http://spark.rstudio.com/dgrapov/Plotting/)
-*[Heatmaps and Hierarchical Cluster Analysis](http://spark.rstudio.com/dgrapov/Heatmap/)
-*[Principal Components Analysis](http://spark.rstudio.com/dgrapov/PCA/)
+* [Data Visualization](http://spark.rstudio.com/dgrapov/Plotting/)
+* [Heatmaps and Hierarchical Cluster Analysis](http://spark.rstudio.com/dgrapov/Heatmap/)
+* [Principal Components Analysis](http://spark.rstudio.com/dgrapov/PCA/)
 
 
 #R Code Examples and More
