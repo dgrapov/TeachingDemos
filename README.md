@@ -26,4 +26,4 @@ Bioinformatics related demos and tutorials using the R programming language.
 [Building Biochemical and Chemical Similarity Networks](https://github.com/dgrapov/TeachingDemos/wiki/Biochemical-and-Chemical-Similarity-Networks) (advanced)
 
 
-#[Read More About These Techniques' Applications](http://imdevsoftware.wordpress.com/category/uncategorized/)
+##[Read More About These Techniques' Applications](http://imdevsoftware.wordpress.com/category/uncategorized/)
