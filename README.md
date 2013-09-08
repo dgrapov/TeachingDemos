@@ -4,6 +4,7 @@ TeachingDemos
 Bioinformatics related demos and tutorials using the R programming language.
 
 #Interactive Demos
+*[MetaMapR](spark.rstudio.com/dgrapov/MetaMapR/)
 * [Data Visualization](http://spark.rstudio.com/dgrapov/Plotting/)
 * [Heatmaps and Hierarchical Cluster Analysis](http://spark.rstudio.com/dgrapov/Heatmap/)
 * [Principal Components Analysis](http://spark.rstudio.com/dgrapov/PCA/)
@@ -25,5 +26,7 @@ Bioinformatics related demos and tutorials using the R programming language.
 ## Network Visualizations
 [Building Biochemical and Chemical Similarity Networks](https://github.com/dgrapov/TeachingDemos/wiki/Biochemical-and-Chemical-Similarity-Networks) (advanced)
 
+#Summer Sessions In Metabolomics 2013
+Check all the material [HERE](http://imdevsoftware.wordpress.com/2013/09/08/sessions-in-metabolomics-2013/).
 
 ##[Read More About These Techniques' Applications](http://imdevsoftware.wordpress.com/category/uncategorized/)
