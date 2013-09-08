@@ -3,7 +3,13 @@ TeachingDemos
 
 Bioinformatics related demos and tutorials using the R programming language.
 
+#Interactive Demos
+* [Data Visualization](http://spark.rstudio.com/dgrapov/Plotting/)
+* [Heatmaps and Hierarchical Cluster Analysis](http://spark.rstudio.com/dgrapov/Heatmap/)
+* [Principal Components Analysis](http://spark.rstudio.com/dgrapov/PCA/)
 
+
+#R Code Examples and More
 ## Multivariate Analysis
 
 [Principal Components Analysis (PCA)](https://github.com/dgrapov/TeachingDemos/wiki/Principal-Components-Analysis) (fast and simple)
@@ -19,3 +25,5 @@ Bioinformatics related demos and tutorials using the R programming language.
 ## Network Visualizations
 [Building Biochemical and Chemical Similarity Networks](https://github.com/dgrapov/TeachingDemos/wiki/Biochemical-and-Chemical-Similarity-Networks) (advanced)
 
+
+##[Read More About These Techniques' Applications](http://imdevsoftware.wordpress.com/category/uncategorized/)
