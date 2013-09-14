@@ -1,10 +1,10 @@
-Orthogonal Partial Least Squares (OPLS) 
+Orthogonal Signal Correction Partial Least Squares (O-PLS) 
 ========================================================
 
-#### This is an example of OPLS modeling in R. See here for [more OPLS options](https://raw.github.com/dgrapov/devium/master/R/Devium%20PLS%20%20and%20OPLS.r) or try [PLS](http://cran.r-project.org/web/packages/pls/index.html).
+#### This is an example of O-PLS modeling in R. See here for [more O-PLS options](https://raw.github.com/dgrapov/devium/master/R/Devium%20PLS%20%20and%20OPLS.r) or try [PLS](http://cran.r-project.org/web/packages/pls/index.html).
 
 
-#### To get things started source the [Devium](https://github.com/dgrapov/devium) repository for OPLS and accesory functions.
+#### To get things started source the [Devium](https://github.com/dgrapov/devium) repository for O-PLS and accesory functions.
 ```r 
 source("http://pastebin.com/raw.php?i=JVyTrYRD")
 ``` 
