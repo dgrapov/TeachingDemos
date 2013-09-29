@@ -1,4 +1,5 @@
 Orthogonal Signal Correction Partial Least Squares (O-PLS) Discriminant Analysis (O-PLS-DA)
+Model Validation
 ========================================================
 
 See here for more [O-PLS](https://raw.github.com/dgrapov/devium/master/R/Devium%20PLS%20%20and%20OPLS.r) methods or try [PLS](http://cran.r-project.org/web/packages/pls/index.html).
@@ -10,15 +11,15 @@ source("http://pastebin.com/raw.php?i=JVyTrYRD")  # source Devium
 ```
 
 
-O-PLS-DA demo using Iris data
-The goal is to predict the species of the flower based on four physical properties.
+O-PLS-DA demo using Iris data.
+The goal is to predict the species of iris flower, [Iris data set](http://en.wikipedia.org/wiki/Iris_flower_data_set), based on four physical properties.
 
-This demonstration is focused on O-PLS-DA model: 
-- [data pretreatment and preparation](#prep) 
-- [model optimization](#oplsda)
-- [permutation testing](#perm)
-- [internal cross-validation](#intOOB)
-- [external cross-validation](#extOOB)
+This demonstration is focused on O-PLS-DA model validation, including: 
+- [Data pretreatment and preparation](#prep) 
+- [Model optimization](#oplsda)
+- [Permutation testing](#perm)
+- [Internal cross-validation](#intOOB)
+- [External cross-validation](#extOOB)
 
 
 <a name="prep"/>
