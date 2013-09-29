@@ -67,35 +67,10 @@ Compare a 2 latent variable (LV) PLS-DA and 2 LV with one orthogonal LV (OLV) O-
 ```r
 mods <- make.OSC.PLS.model(tmp.y, pls.data = scaled.data, comp = 2, OSC.comp = 1, 
     validation = "LOO", method = "oscorespls", cv.scale = TRUE, progress = FALSE)
-```
-
-```
-## Loading required package: pls
-```
-
-```
-## Attaching package: 'pls'
-```
-
-```
-## The following object(s) are masked from 'package:stats':
-## 
-## loadings
-```
-
-```r
 # extract model
 final <- get.OSC.model(obj = mods, OSC.comp = 1)
 # view out-of-bag error for cross-validation splits
 plot.OSC.results(mods, plot = "RMSEP", groups = tmp.group)
-```
-
-```
-## Loading required package: ggplot2
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 2.15.3
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
@@ -129,16 +104,16 @@ Next we can compare our model fit to random chance. We can do this using permuta
 
 ```r
 permuted.stats <- permute.OSC.PLS(data = scaled.data, y = as.matrix(tmp.y), 
-    n = 10, ncomp = 2, osc.comp = 1, progress = FALSE)
+    n = 50, ncomp = 2, osc.comp = 1, progress = FALSE)
 # look how our model compares to random chance
 OSC.validate.model(model = mods, perm = permuted.stats)
 ```
 
 ```
-##                              Q2             Xvar           RMSEP
-## model                    0.9209           0.2467          0.2296
-## permuted model -0.04217 ± 0.031 0.05843 ± 0.0783 0.8333 ± 0.0124
-## p-value               5.956e-15        3.326e-05       1.041e-16
+##                              Q2            Xvar           RMSEP
+## model                    0.9266          0.1851          0.2211
+## permuted model -0.0492 ± 0.0318 0.07993 ± 0.169 0.8361 ± 0.0127
+## p-value               8.746e-75       6.025e-05       1.656e-84
 ```
 
 
@@ -155,7 +130,7 @@ Next we can estimate the OOB error within the training set by conducting model t
 
 ```r
 # strata controls if the species are sampled from equally
-train.test.index = test.train.split(nrow(scaled.data), n = 10, strata = as.factor(tmp.y))
+train.test.index = test.train.split(nrow(scaled.data), n = 50, strata = as.factor(tmp.y))
 train.stats <- OSC.PLS.train.test(pls.data = scaled.data, pls.y = tmp.y, train.test.index, 
     comp = 2, OSC.comp = 1, cv.scale = TRUE, progress = FALSE)
 ```
@@ -170,9 +145,9 @@ OSC.validate.model(model = mods, perm = permuted.stats, train = train.stats)
 
 ```
 ##                              Q2           RMSEP
-## model           0.8831 ± 0.0543 0.2225 ± 0.0181
-## permuted model -0.04217 ± 0.031 0.8333 ± 0.0124
-## p-value               4.577e-17       7.215e-23
+## model           0.9043 ± 0.0161 0.2228 ± 0.0181
+## permuted model -0.0492 ± 0.0318 0.8361 ± 0.0127
+## p-value               1.257e-99      6.707e-118
 ```
 
 

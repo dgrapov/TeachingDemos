@@ -55,7 +55,7 @@ scaled.data<-tmp.data
 <a name="oplsda"/>
 ## Train O-PLS-DA model 
 Compare a 2 latent variable (LV) PLS-DA and 2 LV with one orthogonal LV (OLV) O-PLS-DA model.
-```{r,warnings=FALSE,messages=FALSE}
+```{r,warning=FALSE,message=FALSE}
 mods<-make.OSC.PLS.model(tmp.y,pls.data=scaled.data,comp=2,OSC.comp=1, validation = "LOO",method="oscorespls", cv.scale=TRUE, progress=FALSE)
 #extract model
 final<-get.OSC.model(obj=mods,OSC.comp=1)
@@ -68,11 +68,11 @@ Ideally we want to select the simplest models with lowest root mean squared erro
 The 1 LV and 1 orthogonal LV (O-PLS-DA) model has similar error to a simple 2 LV PLS-DA model.
 
 Next we can also compare the change in scores with the addition of the OLV. 
-```{r,warnings=FALSE, message= FALSE}
+```{r,warning=FALSE, message= FALSE}
 plot.OSC.results(mods,plot="scores",groups=tmp.group)
 ```
 Non-overlapping scores for each species could signify a well fit model, but we need to carry out some further validations to be sure.
-```{r,warnings=FALSE, message= FALSE}
+```{r,warning=FALSE, message= FALSE}
 plot.PLS.results(obj=final,plot="scores",groups=tmp.group)
 ```
 Ideally the within species variance should be maximally orthogonal to the between species variance (our goal to maximize)in this case we see this represented by the vertical spread of the three species scores.
@@ -80,8 +80,8 @@ Ideally the within species variance should be maximally orthogonal to the betwee
 <a name="perm"/>
 # Permutation Testing
 Next we can compare our model fit to random chance. We can do this using permutation testing by generating models for a randomly permuted species label (Y). We will generate 50 permuted models and compare their performance statitcs to our model. 
-```{r,warnings=FALSE, message= FALSE}
-permuted.stats<-permute.OSC.PLS(data=scaled.data,y=as.matrix(tmp.y),n=10,ncomp=2,osc.comp=1, progress=FALSE)
+```{r,warning=FALSE, message= FALSE}
+permuted.stats<-permute.OSC.PLS(data=scaled.data,y=as.matrix(tmp.y),n=50,ncomp=2,osc.comp=1, progress=FALSE)
 #look how our model compares to random chance
 OSC.validate.model(model=mods,perm=permuted.stats)
 
@@ -97,16 +97,16 @@ OSC.validate.model(model=mods,perm=permuted.stats)
 # Internal (training set) Cross-validation
 Next we can estimate the OOB error within the training set by conducting model training and testing. This is done by randomly splitting the trainning data into 1/3 test set and 2/3 training set. Models are fit using training data and used to predict the species label for the test data.
 
-```{r,warnings=FALSE, message= FALSE}
+```{r,warning=FALSE, message= FALSE}
 # strata controls if the species are sampled from equally
-train.test.index=test.train.split(nrow(scaled.data),n=10,strata=as.factor(tmp.y))
+train.test.index=test.train.split(nrow(scaled.data),n=50,strata=as.factor(tmp.y))
 train.stats<-OSC.PLS.train.test(pls.data = scaled.data,pls.y  = tmp.y,train.test.index ,comp=2,OSC.comp=1,cv.scale=TRUE, progress=FALSE)
 
 ```
 
 Now we can compare the distributions for our models' performance statistics to their respective permuted distributions.
 
-```{r,warnings=FALSE, message= FALSE}
+```{r,warning=FALSE, message= FALSE}
 OSC.validate.model(model=mods,perm=permuted.stats,train=train.stats)
 
 ```
@@ -117,7 +117,7 @@ This suggests that we have a strong model (far better than random chance) which 
 Finaly we want to estimate the true estimate of the OOB error by predicting the species labels for the test set we excluded from our data before we even started modeling.
 
 The idea is that the test set was never involved in any of our modeling desicions (pretreatment, feature selection, etc) and is the most honest estimate of our models predictive performance.
-```{r,warnings=FALSE, message= FALSE}
+```{r,warning=FALSE, message= FALSE}
 #reset data
 scaled.data<-iris[,-5]
 tmp.group<-iris[,5] 
@@ -140,7 +140,7 @@ table(plot.data)
 
 Based on the similarity between virginica and versicolor species' physical properties we expect this to be the most difficult classification to get correct.
 
-```{r,warnings=FALSE, message= FALSE}
+```{r,warning=FALSE, message= FALSE}
 pairs(iris[,-5],pch=21,bg=rainbow(nlevels(iris[,5]),alpha=.75)[iris[,5]],upper.panel=NULL,cex=2)
 par(xpd=TRUE)
 legend(.75,1,levels(iris[,5]),fill=rainbow(nlevels(iris[,5]),alpha=.75),bty="n")
