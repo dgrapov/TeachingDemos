@@ -1,6 +1,8 @@
 Orthogonal Signal Correction Partial Least Squares (O-PLS) Discriminant Analysis (O-PLS-DA) Model Validation
 ========================================================
 
+View the [blog post](http://imdevsoftware.wordpress.com/2013/09/29/classification-with-o-pls-da/) accompanying this demonstration.
+
 See here for more [O-PLS](https://raw.github.com/dgrapov/devium/master/R/Devium%20PLS%20%20and%20OPLS.r) methods or try [PLS](http://cran.r-project.org/web/packages/pls/index.html).
 
 
