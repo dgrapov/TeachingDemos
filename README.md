@@ -4,11 +4,11 @@ TeachingDemos
 Bioinformatics related demos and tutorials using the R programming language.
 
 #Interactive Demos
-*[MetaMapR](spark.rstudio.com/dgrapov/MetaMapR/)
+* [MetaMapR](spark.rstudio.com/dgrapov/MetaMapR/)
 * [Data Visualization](http://spark.rstudio.com/dgrapov/Plotting/)
 * [Heatmaps and Hierarchical Cluster Analysis](http://spark.rstudio.com/dgrapov/Heatmap/)
 * [Principal Components Analysis](http://spark.rstudio.com/dgrapov/PCA/)
-
+* [Devium-web](https://github.com/dgrapov/Devium-web)
 
 #R Code Examples and More
 ## Multivariate Analysis
@@ -17,7 +17,9 @@ Bioinformatics related demos and tutorials using the R programming language.
 
 [Partial Least Squares (PLS)](https://github.com/dgrapov/TeachingDemos/wiki/Partial-Least-Squares) (fast and simple)
 
-[Orthogonal Signal Correction Partial Least Squares (O-PLS)](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/OPLS/OPLS%20example.md)
+O-PLS/ O-PLS-DA
+[Model permutation testing and validation](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Predictive%20Modeling/Iris%20O-PLS-DA/O-PLS%20modeling%20of%20Iris%20data.md)
+[Comparing single to multiple Y models](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/OPLS/OPLS%20example.md)
 
 ## Database query and translation
 [Translating Between Chemical Identifiers](https://github.com/dgrapov/TeachingDemos/wiki/Translating-Between-Chemical-Identifiers)  (intermediate)
