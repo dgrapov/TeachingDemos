@@ -17,7 +17,7 @@ Bioinformatics related demos and tutorials using the R programming language.
 
 [Partial Least Squares (PLS)](https://github.com/dgrapov/TeachingDemos/wiki/Partial-Least-Squares) (fast and simple)
 
-O-PLS/ O-PLS-DA
+## O-PLS/ O-PLS-DA
 [Model permutation testing and validation](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Predictive%20Modeling/Iris%20O-PLS-DA/O-PLS%20modeling%20of%20Iris%20data.md)
 [Comparing single to multiple Y models](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/OPLS/OPLS%20example.md)
 
