@@ -64,7 +64,7 @@ scaled.data <- tmp.data
 
 <a name="oplsda"/>
 ## Train O-PLS-DA model 
-Compare a 2 latent variable (LV) PLS-DA and 2 LV with one orthogonal LV (OLV) O-PLS-DA model.
+Compare a 2 latent variable (LV) PLS-DA and 2 LV with one orthogonal LV (OSC LV or OLV) O-PLS-DA model.
 
 ```r
 mods <- make.OSC.PLS.model(tmp.y, pls.data = scaled.data, comp = 2, OSC.comp = 1, 
