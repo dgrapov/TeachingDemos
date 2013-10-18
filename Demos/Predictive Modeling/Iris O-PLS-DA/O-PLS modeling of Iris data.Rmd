@@ -28,12 +28,12 @@ tmp.group<-iris[,5] # species
 tmp.y<-matrix(as.numeric(tmp.group),ncol=1) # make numeric matrix
 ```
 
-The data will be split into 1/3 test and 2/3 trainning sets.
-The trainning data will be used for:
+The data will be split into 1/3 test and 2/3 training sets.
+The training data will be used for:
 
 - model optimization
 - permutation testing
-- internaly cross-validated estimate of trainning and out-of-bag error (OOB)
+- internally cross-validated estimate of training and out-of-bag error (OOB)
 
 The hold out set or the test data will be used to estimate the externally validated OOB.
 
@@ -79,9 +79,10 @@ Ideally the within species variance should be maximally orthogonal to the betwee
 
 <a name="perm"/>
 # Permutation Testing
-Next we can compare our model fit to random chance. We can do this using permutation testing by generating models for a randomly permuted species label (Y). We will generate 50 permuted models and compare their performance statitcs to our model. 
+Next we can compare our model fit to random chance. We can do this using permutation testing by generating models for a randomly permuted species label (Y). We will generate 50 permuted models and compare their performance statics to our model. We also first want to generate a pseudo-training/test split for our training data in order to correctly simulate the RMSEP. The permuted models will be fit using the pseudo-training data and then used to predict the species label for the pseudo-test set.
 ```{r,warning=FALSE, message= FALSE}
-permuted.stats<-permute.OSC.PLS(data=scaled.data,y=as.matrix(tmp.y),n=50,ncomp=2,osc.comp=1, progress=FALSE)
+train.test.index=test.train.split(nrow(scaled.data),n=100,strata=as.factor(tmp.y)) # strata controls if the species are sampled from equally
+permuted.stats<-permute.OSC.PLS(data=scaled.data,y=as.matrix(tmp.y),n=50,ncomp=2,osc.comp=1, progress=FALSE,train.test.index=train.test.index)
 #look how our model compares to random chance
 OSC.validate.model(model=mods,perm=permuted.stats)
 
@@ -95,11 +96,9 @@ OSC.validate.model(model=mods,perm=permuted.stats)
 
 <a name="intOOB"/>
 # Internal (training set) Cross-validation
-Next we can estimate the OOB error within the training set by conducting model training and testing. This is done by randomly splitting the trainning data into 1/3 test set and 2/3 training set. Models are fit using training data and used to predict the species label for the test data.
+Next we can estimate the OOB error within the training set by conducting model training and testing. This is done using the pseudo-training/test split we generated for the model permutations. 
 
 ```{r,warning=FALSE, message= FALSE}
-# strata controls if the species are sampled from equally
-train.test.index=test.train.split(nrow(scaled.data),n=50,strata=as.factor(tmp.y))
 train.stats<-OSC.PLS.train.test(pls.data = scaled.data,pls.y  = tmp.y,train.test.index ,comp=2,OSC.comp=1,cv.scale=TRUE, progress=FALSE)
 
 ```
@@ -114,9 +113,9 @@ OSC.validate.model(model=mods,perm=permuted.stats,train=train.stats)
 This suggests that we have a strong model (far better than random chance) which capable of correctly predicting the species of the flower.
 <a name="extOOB"/>
 # Model testing
-Finaly we want to estimate the true estimate of the OOB error by predicting the species labels for the test set we excluded from our data before we even started modeling.
+Finally we want to estimate the true estimate of the OOB error by predicting the species labels for the test set we excluded from our data before we even started modeling.
 
-The idea is that the test set was never involved in any of our modeling desicions (pretreatment, feature selection, etc) and is the most honest estimate of our models predictive performance.
+The idea is that the test set was never involved in any of our modeling decisions (pretreatment, feature selection, etc) and is the most honest estimate of our models predictive performance.
 ```{r,warning=FALSE, message= FALSE}
 #reset data
 scaled.data<-iris[,-5]
@@ -147,7 +146,7 @@ legend(.75,1,levels(iris[,5]),fill=rainbow(nlevels(iris[,5]),alpha=.75),bty="n")
 
 ```
 
-O-PLS-DA becomes very useful when there are many variables. Model loadings on LV 1 (x-axis) can be used to linearly rank variables with respect to explaining differences in samples which are represented by the model scores. This approach is useful for reducing multidimensional comparisons (e.g. multiple class comparisons, genotype/treatment/timepoint) to single dimensional ranking of each variable representing it's weight for explaining a given hypothesis (Y) and the goodness of the answer depends on the strength of the produced model. 
+O-PLS-DA becomes very useful when there are many variables. Model loadings on LV 1 (x-axis) can be used to linearly rank variables with respect to explaining differences in samples which are represented by the model scores. This approach is useful for reducing multidimensional comparisons (e.g. multiple class comparisons, genotype/treatment/time point) to single dimensional ranking of each variable representing it's weight for explaining a given hypothesis (Y) and the goodness of the answer depends on the strength of the produced model. 
 
 
 
