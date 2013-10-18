@@ -1,5 +1,7 @@
-Orthogonal Signal Correction Partial Least Squares (O-PLS) Discriminant Analysis (O-PLS-DA)
+Orthogonal Signal Correction Partial Least Squares (O-PLS) Discriminant Analysis (O-PLS-DA) Model Validation
 ========================================================
+
+View the [blog post](http://imdevsoftware.wordpress.com/2013/09/29/classification-with-o-pls-da/) accompanying this demonstration.
 
 See here for more [O-PLS](https://raw.github.com/dgrapov/devium/master/R/Devium%20PLS%20%20and%20OPLS.r) methods or try [PLS](http://cran.r-project.org/web/packages/pls/index.html).
 
@@ -10,15 +12,15 @@ source("http://pastebin.com/raw.php?i=JVyTrYRD")  # source Devium
 ```
 
 
-O-PLS-DA demo using Iris data
-The goal is to predict the species of the flower based on four physical properties.
+O-PLS-DA demo using Iris data.
+The goal is to predict the species of iris flower, [Iris data set](http://en.wikipedia.org/wiki/Iris_flower_data_set), based on four physical properties.
 
-This demonstration is focused on O-PLS-DA model: 
-- [data pretreatment and preparation](#prep) 
-- [model optimization](#oplsda)
-- [permutation testing](#perm)
-- [internal cross-validation](#intOOB)
-- [external cross-validation](#extOOB)
+This demonstration is focused on O-PLS-DA model validation, including: 
+- [Data pretreatment and preparation](#prep) 
+- [Model optimization](#oplsda)
+- [Permutation testing](#perm)
+- [Internal cross-validation](#intOOB)
+- [External cross-validation](#extOOB)
 
 
 <a name="prep"/>
@@ -62,7 +64,7 @@ scaled.data <- tmp.data
 
 <a name="oplsda"/>
 ## Train O-PLS-DA model 
-Compare a 2 latent variable (LV) PLS-DA and 2 LV with one orthogonal LV (OLV) O-PLS-DA model.
+Compare a 2 latent variable (LV) PLS-DA and 2 LV with one orthogonal LV (OSC LV or OLV) O-PLS-DA model.
 
 ```r
 mods <- make.OSC.PLS.model(tmp.y, pls.data = scaled.data, comp = 2, OSC.comp = 1, 
