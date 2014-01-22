@@ -11,6 +11,9 @@ Bioinformatics related demos and tutorials using the R programming language.
 * [Devium-web](https://github.com/dgrapov/Devium-web)
 
 #R Code Examples and More
+## Covariate Adjustment (linear model)
+* [Covariate Adjustment]()
+
 ## PCA
 * [Principal Components Analysis (PCA)](https://github.com/dgrapov/TeachingDemos/wiki/Principal-Components-Analysis) (fast and simple)
 
