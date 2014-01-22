@@ -8,7 +8,7 @@ Bioinformatics related demos and tutorials using the R programming language.
 * [Data Visualization](http://spark.rstudio.com/dgrapov/Plotting/)
 * [Heatmaps and Hierarchical Cluster Analysis](http://spark.rstudio.com/dgrapov/Heatmap/)
 * [Principal Components Analysis](http://spark.rstudio.com/dgrapov/PCA/)
-* [Devium-web](https://github.com/dgrapov/Devium-web)
+* [DeviumWeb](https://github.com/dgrapov/DeviumWeb)
 
 #R Code Examples and More
 ## Statistical Analysis
