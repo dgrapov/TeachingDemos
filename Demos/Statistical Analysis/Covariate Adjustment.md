@@ -12,7 +12,6 @@ Here are the major steps involved
 - [covariate adjust for Species](#covaradj)
 - [visualize adjusted data](#adjvis)
 - [conclusion](#conclusion)
-- [todo](#TODO)
 
 
 <a name="load"/>
