@@ -1,7 +1,7 @@
 Data Covariate Adjustment
 ========================================================
 
-Covariate adjustment is a widely used approach in statistical data analysis to improve the power of tests on independent variables. In this context, covariate adjustment plays an integral role the Analysis of Covariance (ANCOVA). However the reader should be warned that the valid application of ANCOVA makes a few assuptions. For a well written discussion of this topic the reader is directed [Misunderstanding Analysis of Covariance](http://www.ncbi.nlm.nih.gov/pubmed/11261398).
+Covariate adjustment is a widely used approach in statistical data analysis to improve the power of tests on independent variables. In this context, covariate adjustment plays an integral role the Analysis of Covariance (ANCOVA). However the reader should be warned that the valid application of ANCOVA makes a few assuptions. For a well written discussion of this topic the reader is directed to read [Misunderstanding Analysis of Covariance](http://www.ncbi.nlm.nih.gov/pubmed/11261398).
 
 Covariate adjustment can also be a useful approach in data pre-processing in the context of multivariate modeling. The following is an example application of covariate adjustment using a linear model. The function [covar.adjustment](https://github.com/dgrapov/devium/blob/master/R/Devium%20Statistics.r) part of the [Devium](https://github.com/dgrapov/devium) tool set is used to carry out covariate adjustment on the famous [Iris](http://en.wikipedia.org/wiki/Iris_flower_data_set) data set.
 
