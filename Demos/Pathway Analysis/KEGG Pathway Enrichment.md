@@ -94,7 +94,7 @@ head(gene.data)
 ## AT3G18980 -0.01891
 ```
 
-Looking at the rownames we can see that the identifiers are specific for arabidopsis thaliana. Using real data it is possible that we will need to translate identifires to match the type used in pathview. Here are the diffrent identifiers which can be supplied for metabolites.
+Looking at the rownames we can see that the identifiers are specific for arabidopsis thaliana. Using real data it is possible that we will need to translate identifiers to match the type used in pathview. Here are the different identifiers which can be supplied for metabolites.
 
 ```r
 data(cpd.simtypes)
@@ -124,7 +124,7 @@ gene.idtype.list
 We can optionally simulate data with with other identifiers by selecting the appropriate identifier type for the argument `id.type` in the function ``sim.mol.data`` .
  
 In the example data above we have the the logarithm of fold changes for 3000 metabolites and 3000 genes. Now that we have the data we can select some pathway of interest to map the fold changes to. 
-We could get this information from a pathway enrichment analysis. We would do this by testing if the signinficantly diffrentially expressed metabolites or genes are enriched for some specific KEGG pathways of interest. Here are some tools to conduct enrichment analysis for genes and metabolites.
+We could get this information from a pathway enrichment analysis. We would do this by testing if the significantly differential expressed metabolites or genes are enriched for some specific KEGG pathways of interest. Here are some tools to conduct enrichment analysis for genes and metabolites.
 
 * [MBrole](http://csbg.cnb.csic.es/mbrole/) (metabolites)
 * [MetaboAnalyst](http://www.metaboanalyst.ca/MetaboAnalyst/faces/Home.jsp) (metabolites)
@@ -237,7 +237,7 @@ head(pv.out)
 
 <!---![``ath00020.ath00020.png``](``ath00020.ath00020.png``) -->
 
-We can also display changes in genes/proteins and metabolites for multiple comparisons. To do this lets create some more artifical data and this time lets get protein information. 
+We can also display changes in genes/proteins and metabolites for multiple comparisons. To do this lets create some more artificial data and this time lets get protein information. 
 
 ```r
 metabolite.data2 <- sim.mol.data(mol.type = "cpd", nmol = 3000, nexp = 2)
@@ -284,6 +284,8 @@ plot.name <- paste(map, map, "multi", "png", sep = ".")
 This should have generated an image file named ``00010.00010.multi.png``.
 ![hsa00010.00010.multi.png](hsa00010.00010.multi.png)
 
+We could also map metabolites on a large scale, use the `pathway.id= 01100`.
+![metabolic pathways](http://pathview.r-forge.r-project.org/images/hsa01100.sim.cpd.png)
 
 
 ```r
