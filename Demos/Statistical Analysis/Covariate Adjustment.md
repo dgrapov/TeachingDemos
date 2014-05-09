@@ -176,5 +176,4 @@ plot.PLS(final, results = "scores", color = groups, label = FALSE)
 In this simple example of covariate adjustment using a linear model all that is really happening is the intercept is now the same for all relationships/species. We can confirm this looking at all the pairwise relationships or on a multivariate exploratory level through PCA, or using the supervised approch of O-PLS-DA.
 
 
-
 &copy; Dmitry Grapov (2014) <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
