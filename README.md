@@ -30,8 +30,9 @@ Bioinformatics related demos and tutorials using the R programming language.
 
 ## Network Visualizations
 * [Building Biochemical and Chemical Similarity Networks](https://github.com/dgrapov/TeachingDemos/wiki/Biochemical-and-Chemical-Similarity-Networks) (advanced)
+* [KEGG Pathway Visualization] () (genes, proteins and metabolites)
 
-#Summer Sessions In Metabolomics 2013
-Check all the material [HERE](http://imdevsoftware.wordpress.com/2013/09/08/sessions-in-metabolomics-2013/).
-
-##[Read More About These Techniques' Applications](http://imdevsoftware.wordpress.com/category/uncategorized/)
+##Miscellaneous
+* [Summer 2014 Metabolomic Data Analysis Workshop] (http://imdevsoftware.wordpress.com/2013/09/08/sessions-in-metabolomics-2013/)
+* [Winter 2014 Metabolomic Data Analysis Workshop](http://imdevsoftware.wordpress.com/2014/02/17/tutorials-statistical-and-multivariate-analysis-for-metabolomics/)
+* [Data analysis and visualization blog](http://imdevsoftware.wordpress.com/category/uncategorized/)

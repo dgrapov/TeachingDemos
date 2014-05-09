@@ -17,7 +17,7 @@ Here are the major steps involved
 <a name="load"/>
 ### Load Devium Library
 ```{r,hide=FALSE,message=FALSE,warning=FALSE}
-source("http://pastebin.com/raw.php?i=JVyTrYRD") # source Devium
+source("http://pastebin.com/raw.php?i=UyDBTA57")# source Devium
 ```
 
 <a name="prepare"/>
