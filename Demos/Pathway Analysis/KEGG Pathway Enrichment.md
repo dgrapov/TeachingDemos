@@ -139,13 +139,6 @@ We can use the R package [KEGGREST](http://bioconductor.org/packages/2.12/bioc/h
 ```r
 # get names of pathways to visualize
 library(KEGGREST)
-```
-
-```
-## Warning: package 'KEGGREST' was built under R version 3.0.3
-```
-
-```r
 pathways <- keggList("pathway", kegg.code)
 head(pathways)
 ```

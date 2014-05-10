@@ -62,7 +62,7 @@ We could get this information from a pathway enrichment analysis. We would do th
 For the example below we will randomly select some KEGG pathways. 
 We can use the R package [KEGGREST](http://bioconductor.org/packages/2.12/bioc/html/KEGGREST.html) to get all KEGG pathway identifiers for ```r organism ```.
 
-```{r}
+```{r,message=FALSE,warning=FALSE}
 #get names of pathways to visualize
 library(KEGGREST)
 pathways<-keggList("pathway" ,kegg.code)
