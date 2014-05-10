@@ -1,5 +1,6 @@
 Visualization of KEGG Pathway Enrichment
 ========================================================
+![](http://pathview.r-forge.r-project.org/images/hsa01100.sim.cpd.png)
 The [KEGG](http://www.genome.jp/kegg/) database is a useful repository of biochemical domain knowledge.
 The following is an example of how to map changes in genes, proteins and metabolites on an organism specific basis to KEGG defined [biochemical pathways](http://www.genome.jp/kegg/pathway.html).
 For this example we will use the R packages [pathview](http://bioconductor.org/packages/release/bioc/html/pathview.html), [KEGGREST](http://bioconductor.org/packages/2.12/bioc/html/KEGGREST.html) and [KEGGgraph](http://www.bioconductor.org/packages/release/bioc/html/KEGGgraph.html).
@@ -104,7 +105,7 @@ plot.name<-paste(map,map,"multi","png",sep=".")
 This should have generated an image file named ```r plot.name```.
 ![hsa00010.00010.multi.png](hsa00010.00010.multi.png)
 
-We could also map metabolites on a large scale, use the `pathway.id= 01100`.
+We could also map metabolites on a large scale using `pathway.id= 01100`.
 ![metabolic pathways](http://pathview.r-forge.r-project.org/images/hsa01100.sim.cpd.png)
 
 ```{r}
