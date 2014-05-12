@@ -265,7 +265,7 @@ head(gene.data2)
 
 Notice UNIPROT IDs do not map to ``arabidopsis thaliana``. We can check the available mappings by looking at the database of identifiers for ``arabidopsis thaliana`` org.At.tair.db. Lets instead map changes to a human pathway or KEGG code "hsa". 
 To do this we need to make sure we supply the correct ``species`` and ``gene.idtype`` arguments. Next lets map changes in proteins and metabolites for the two comparisons to the pathway .
-org.At.tairUNIPROT
+
 
 ```r
 map <- gsub("path:ath", "", names(pathways)[1])  # remove 'path:ath'
@@ -278,7 +278,7 @@ plot.name <- paste(map, map, "multi", "png", sep = ".")
 This should have generated an image file named ``00010.00010.multi.png``.
 ![hsa00010.00010.multi.png](hsa00010.00010.multi.png)
 
-We could also map metabolites on a large scale using `pathway.id= 01100`.
+We could also map metabolites on a large scale using `pathway.id= '01100'`.
 ![metabolic pathways](http://pathview.r-forge.r-project.org/images/hsa01100.sim.cpd.png)
 
 
