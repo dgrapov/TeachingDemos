@@ -8,7 +8,7 @@ See here for more [O-PLS](https://raw.github.com/dgrapov/devium/master/R/Devium%
 
 
 ```r
-source("http://pastebin.com/raw.php?i=JVyTrYRD")  # source Devium
+source("http://pastebin.com/raw.php?i=UyDBTA57")  # source Devium
 ```
 
 
