@@ -1,0 +1,93 @@
+ID,color,size,selected,name,class
+1,down,1.299818383,TRUE,Propylene glycol,Lipid Metabolism
+2,up,1.733627798,TRUE,Glycolic acid,Nucleotide Metabolism
+3,up,0.906013278,FALSE,L-Alanine,other
+4,down,0.252883372,FALSE,,other
+5,down,0.788061117,FALSE,L-Valine,Amino Acid Metabolism
+6,down,1.234377918,TRUE,Urea,Amino Acid Metabolism
+7,down,0.790245582,FALSE,Benzoic acid,other
+8,up,1.098129963,TRUE,L-Serine,Amino Acid Metabolism
+9,down,0.634914989,FALSE,Ethanolamine,Amino Acid Metabolism
+10,up,0.659531582,FALSE,Phosphoric acid,Energy Metabolism
+11,up,0.962800591,FALSE,L-Threonine,Amino Acid Metabolism
+12,up,1.266322545,TRUE,Glycine,Xenobiotics Biodegradation and Metabolism
+13,down,0.790245582,FALSE,Succinic acid,other
+14,up,0.521221946,FALSE,Glyceric acid,Carbohydrate Metabolism
+15,up,0.546569114,FALSE,"2,4-Dihydroxybutanoic acid",other
+16,up,1.93931343,TRUE,"(S)-3,4-Dihydroxybutyric acid",other
+17,up,0.908627549,FALSE,3-Aminoisobutanoic acid,other
+18,up,1.101488745,TRUE,Aminomalonic acid,
+19,down,1.486559547,TRUE,"(2R*,3R*)-1,2,3-Butanetriol",other
+20,up,1.286588241,TRUE,D-Threitol,other
+21,up,0.990993538,FALSE,Erythritol,other
+22,up,1.375844298,TRUE,Pyroglutamic acid,Amino Acid Metabolism
+23,up,0.872181606,FALSE,,other
+24,down,0.645797177,FALSE,,other
+25,up,1.247175218,TRUE,Erythronic acid,other
+26,up,0.563686189,FALSE,L-Cysteine,Amino Acid Metabolism
+27,down,0.538705285,FALSE,Creatinine,Amino Acid Metabolism
+28,up,0.457205694,FALSE,Threonic acid,other
+29,up,0.713549876,FALSE,Oxoglutaric acid,Carbohydrate Metabolism
+30,up,1.345520899,TRUE,L-Phenylalanine,other
+31,up,0.908828556,FALSE,,other
+32,up,1.45892177,TRUE,p-Hydroxyphenylacetic acid,Amino Acid Metabolism
+33,up,1.68358479,TRUE,,other
+34,up,1.037666091,TRUE,Taurine,Lipid Metabolism
+35,up,1.19678404,TRUE,Pectin,
+36,down,0.842423667,FALSE,Arabinose,Amino Acid Metabolism
+37,up,1.087402931,TRUE,D-Ribose,Carbohydrate Metabolism
+38,up,0.961460011,FALSE,L-Lysine,Carbohydrate Metabolism
+39,up,1.148532611,TRUE,D-Xylitol,Amino Acid Metabolism
+40,up,1.296995751,TRUE,D-Arabitol,other
+41,up,1.116369463,TRUE,Ribitol,other
+42,up,0.75269885,FALSE,L-Fucose,Carbohydrate Metabolism
+43,up,1.851909456,TRUE,cis-Aconitic acid,other
+44,down,0.981482424,FALSE,D-Ribose,Carbohydrate Metabolism
+45,up,2.048365046,TRUE,Homovanillic acid,Amino Acid Metabolism
+46,down,0.440987815,FALSE,Glycerol 3-phosphate,Lipid Metabolism
+47,up,0.721778091,FALSE,L-Glutamine,Amino Acid Metabolism
+48,down,0.227845964,FALSE,,other
+49,up,1.033067548,TRUE,Hypoxanthine,Carbohydrate Metabolism
+50,up,0.76290555,FALSE,Hippuric acid,Amino Acid Metabolism
+51,down,0.842423667,FALSE,Ornithine,Amino Acid Metabolism
+52,up,0.661796848,FALSE,Citric acid,other
+53,up,1.027152014,TRUE,3-(3-Hydroxyphenyl)-3-hydroxypropanoic acid,other
+54,down,0.864456119,FALSE,,other
+55,down,0.683583279,FALSE,Quinic acid,other
+56,up,1.299131713,TRUE,L-Tyrosine,other
+57,up,0.380070114,FALSE,L-Sorbose,
+58,down,1.206093428,TRUE,D-Fructose,Carbohydrate Metabolism
+59,up,0.900822861,FALSE,D-Galactose,Xenobiotics Drugs etc
+60,up,0.793094738,FALSE,D-Glucose,other
+61,up,0.949160549,FALSE,L-Histidine,other
+62,up,0.608357131,FALSE,Mannitol,Amino Acid Metabolism
+63,up,1.406634949,TRUE,,other
+64,down,0.474463577,FALSE,Sorbitol,Carbohydrate Metabolism
+65,up,0.878501982,FALSE,,other
+66,down,0.688496547,FALSE,Galactitol,Carbohydrate Metabolism
+67,down,0.620119883,FALSE,,other
+68,up,0.767222179,FALSE,Gulonic acid,other
+69,up,0.353143318,FALSE,Gluconic acid,Carbohydrate Metabolism
+70,up,0.58165814,FALSE,,other
+71,up,0.469785178,FALSE,Kynurenic acid,Amino Acid Metabolism
+72,down,1.156206268,TRUE,Beta-N-Acetylglucosamine,
+73,down,0.480199886,FALSE,,other
+74,down,0.583574412,FALSE,Uric acid,Nucleotide Metabolism
+75,up,0.798486399,FALSE,,other
+76,down,0.596285854,FALSE,,other
+77,up,1.527657596,TRUE,L-Tryptophan,Carbohydrate Metabolism
+78,up,0.998177161,FALSE,5-Hydroxyindoleacetic acid,Amino Acid Metabolism
+79,down,0.663749299,FALSE,,other
+80,up,1.134615214,TRUE,4-Hydroxyhippuric acid,other
+81,down,0.705675506,FALSE,,other
+82,down,0.847647221,FALSE,L-Cystine,other
+83,down,0.812004248,FALSE,,other
+84,up,0.427448727,FALSE,Pseudouridine,Nucleotide Metabolism
+85,up,1.540686424,TRUE,Arabinofuranose,
+86,up,0.905064018,FALSE,,other
+87,down,0.347224178,FALSE,Acetaminophen glucuronide,Carbohydrate Metabolism
+88,up,0.817887212,FALSE,Hydroxyproline dipeptide 4-TMS,other
+89,up,1.54246661,TRUE,Xylobiose,other
+90,up,0.62092751,FALSE,Sucrose,Amino Acid Metabolism
+91,up,0.979388644,FALSE,,other
+92,up,0.54023557,FALSE,Alpha-Lactose,

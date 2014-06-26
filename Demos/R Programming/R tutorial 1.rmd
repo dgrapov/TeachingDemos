@@ -1,0 +1,151 @@
+
+# Getting Started with R Lesson 1
+### by Dmitry Grapov
+
+
+
+### GOALS:
+### * [getting started](#basics) 
+### * [basic operators](#operators)
+### * [plotting](#plotting)
+### * [creating data summaries](#summary)
+
+### For the following examples we will focus on the bare bones to help us learn basic concepts
+
+
+<a name="basics"/>
+### Getting started
+```{r,message=FALSE,warning=FALSE}
+# this is a comment R doesn't interpret this
+10 # works
+# a # remove comment and try to type a
+```
+
+R knows what ```r 10 ``` is, it is a number which has been defined in the R environment. However a has not been defined and R throws an error when trying to print it to the console.
+
+```{r,message=FALSE,warning=FALSE}
+"a" # works
+a<-10 # assignment
+b<-a+1 # using a pre assigned variable
+```
+
+When we give ```r "a" ``` we define that this object is as a character vector "a" which R understands how to print to screen. We can assign ```r a ``` to something R knows about like for instance ```r 10 ```. Having done this we can now use ```r a ``` as a variable to do whatever we want.
+
+<a name="operators"/>
+### Arithmetic operators
+```{r,message=FALSE,warning=FALSE}
+a + b #addition
+a - b #subtraction
+a * b #multiplication
+a / b #division
+a^b #exponentiation
+a %/% b #integer division
+a %% b #modulo (remainder) b%%a makes more sense
+```
+
+### Relational operators
+```{r,message=FALSE,warning=FALSE}
+a==b #is a equal to b
+a>b # a is greater than b, use < for less than
+a>=b # a is greater than or equal to
+```
+
+### Logical operators
+```{r,message=FALSE,warning=FALSE}
+! #not
+a!=b # is a equal to be? could also do !a==b    
+#& #and
+# | #or
+# && #sequential and
+# || #sequential or
+```
+
+### Lets create a new variable to test the logical operators
+```{r,message=FALSE,warning=FALSE}
+x<-1:10 # note ':' creates a sequence
+x!=a # notice how the shorter a is recycled
+(id<-!x>=a) # notice we assigned the results to id and use () to print this
+x>a|x<b # check if any criteria specified is TRUE
+x>a&x<b # check if all criteria specified is TRUE
+```
+
+### Indexing
+```{r,message=FALSE,warning=FALSE}
+a[1] # get the first 'unit' of a
+a[2] #  trying to reference something which doesn't exist, NA stands for missing value
+x[2] # this works because x has length >=2
+x[c(1,2,6:8)] # can use c() to get many specific elements
+x[id] # we can also use a logical to get our object
+```
+
+### Object properties
+```{r,message=FALSE,warning=FALSE}
+str(x) #structure, x is an integer vector (one dimension)
+class(id) # is logical
+length(x) # length
+```
+
+### Next lets load some real data to experiment with
+```{r,message=FALSE,warning=FALSE}
+data(iris) # we use a function named data to load the iris data
+str(iris) # structure
+#notice we have 2 dimensions now, rows and columns
+# now subset the object as object[rows,columns]
+iris[1:5,3:4]
+species<-iris$Species # in data.frames and list we can also reference columns with '$'
+species<-iris[,"Species"] # or by name
+```
+
+### Lets make some plots
+```{r,message=FALSE,warning=FALSE}
+plot(iris[,1:2]) # plot the first 2 columns
+help(plot) #see what other arguments plot could take
+plot(iris[,1],species) 
+plot(iris[,1]~species) # plot is different because species is factor and formula notation "~" is used
+plot(iris[,1]~species, col =c("red","green","blue")) # add a color
+plot(iris[,1]~species, col =c("red","green","blue"),ylab=colnames(iris)[1]) # and label, use function colnames() to get column names and take the first columns name
+plot(iris) # because we gave the whole data frame R calls pairs() and creates a scatterplot matrix
+color<-c("red","green","blue")[species] # we can use the factor to subset our colors to create a color for each point
+plot(iris, pch=21,bg=color, main="My Awesome Plot!") # here we give custom point shape 'pch', border 'col' and inner color 'bg' as well as a title 'main'
+```
+
+### Next lets experiment with getting summary statics
+```{r,message=FALSE,warning=FALSE}
+mean(iris) # we want to get the mean but giving the whole data.frame with the factor does not make sense?
+mean(iris[,1]) # this works
+mean(iris[,"Species"]) # this was the issue, it is not numeric (we could coerce 'as.numeric' but why?)
+mean(iris[iris$Species=="setosa",1]) # here we subset the rows to only get values for the species setosa and return the mean for column 1 for this group
+```
+
+#### Next lets get all column means for the species setosa
+```{r,message=FALSE,warning=FALSE}
+apply(iris[iris$Species=="setosa",1:4],2,mean) #here we use function apply to for each column  use the function mean (see help(apply)) 
+# we also removed species because we know mean wont work on this and also causes bad behaviour for other columns
+```
+
+#### Now lets get the means for each species
+```{r,message=FALSE,warning=FALSE}
+big.l<-split(iris[,1:4], iris$Species) # create a list holding a data.frame for each level of the species
+(res<-lapply(big.l,apply,2,mean)) # get means for each species and variable
+data.frame(res) # get results combined
+t(data.frame(res)) # transpose results 
+```
+
+#### Using this basic syntax we can exucute any custom function that we want (more to come later on R libraries to this this in an elegant and efficient way).
+#### Lets define a custom function to return the formatted mean and standard deviation, and then use it in the code above.
+```{r,message=FALSE,warning=FALSE}
+mean.sd<-function(x){
+  paste0(round(c(mean(x),sd(x)),1),collapse=" +/- ") # our custom function
+  
+  }
+t(sapply(big.l,apply,2,mean.sd))
+```
+
+
+
+
+
+
+
+
+

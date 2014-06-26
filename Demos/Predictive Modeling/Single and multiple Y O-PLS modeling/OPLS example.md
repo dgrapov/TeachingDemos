@@ -4,98 +4,59 @@ Orthogonal Partial Least Squares (OPLS)
 #### This is an example of OPLS modeling in R. See here for [more OPLS options](https://raw.github.com/dgrapov/devium/master/R/Devium%20PLS%20%20and%20OPLS.r) or try [PLS](http://cran.r-project.org/web/packages/pls/index.html).
 
 
-#### To get things started source the [Devium](https://github.com/dgrapov/devium) repository for OPLS and accesory functions.
-```r 
-source("http://pastebin.com/raw.php?i=JVyTrYRD")
-``` 
 
 
 #### Generate some random data and Y's.
 
 ```r
 set.seed(1234)
-data <- matrix(rnorm(10000, 0, 1), nrow = 100, ncol = 100)
-simple.y <- matrix(rep(1:2, 50), , 1)
-complex.y <- matrix(sample(1:2, 400, replace = T), , 4)
+data<-matrix(rnorm(10000,0,1),nrow=100, ncol=100)
+simple.y<-matrix(rep(1:2,50),,1)
+complex.y<-matrix(sample(1:2,400,replace=T),,4)
 ```
 
-
-#### Make exploratory model. Fit 5 latent variable (LVs) and 5 orthogonal latent variables (OLVs). 
+#### Make exploratory model. Fit 10 latent variable (LVs) and 10 orthogonal latent variables (OLVs). 
 
 ```r
-# scale data
-scaled.data <- data.frame(scale(data, scale = T, center = T))
+#scale data 
+scaled.data<-data.frame(scale(data,scale=T,center=T)) 
 
-comp <- ocomp <- 5  # maximum number of latent variables (LVs)
-pls.y <- simple.y
+comp<-ocomp<-5 # maximum number of latent variables (LVs)
+pls.y<-simple.y
 
-mods1 <- OSC.correction(progress = FALSE, pls.y = pls.y, pls.data = scaled.data, 
-    comp = comp, OSC.comp = ocomp, validation = "LOO", method = "oscorespls", 
-    cv.scale = T)
+mods1<-OSC.correction(progress=FALSE,pls.y=pls.y,pls.data=scaled.data,comp=comp,OSC.comp=ocomp,validation = "LOO",method="oscorespls",cv.scale=T)
 ```
-
 
 
 #### View root mean squared error of prediction for various number of OLV models. Note X-axis reffers to total number of OLVs not LVs, hence the start at 0.
 
 ```r
-plot.OSC.results(obj = mods1, plot = "RMSEP", groups = group)
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 2.15.2
+plot.OSC.results(obj=mods1,plot="RMSEP",groups=group)
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
 
-
 #### View scores for various models.
 
 ```r
-# create factor to visualize groups
-group <- factor(join.columns(pls.y))  #visualize levels of y
-plot.OSC.results(obj = mods1, plot = "scores", groups = group)
+#create factor to visualize groups
+group<-factor(join.columns(pls.y))#visualize levels of y 
+plot.OSC.results(obj=mods1,plot="scores",groups=group)
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
 
-
 #### View variable loadings for various models.
 
 ```r
-# create factor to visualize groups
-plot.OSC.results(obj = mods1, plot = "loadings")
-```
-
-```
-## Warning: Stacking not well defined when ymin != 0
-```
-
-```
-## Warning: Stacking not well defined when ymin != 0
-```
-
-```
-## Warning: Stacking not well defined when ymin != 0
-```
-
-```
-## Warning: Stacking not well defined when ymin != 0
-```
-
-```
-## Warning: Stacking not well defined when ymin != 0
-```
-
-```
-## Warning: Stacking not well defined when ymin != 0
+#create factor to visualize groups
+plot.OSC.results(obj=mods1,plot="loadings")
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
 
 
-
-#### Get optimal LV/OLV suggestions. This becomes very handy with multiple Ys.
+#### Get optimal LV/OLV suggestions. This becaomes very handy with multiple Ys.
 
 ```r
 #fit 1:limit LV/OLV models to overview optimal LV and OLV
@@ -105,7 +66,6 @@ optimal.model<-optimize.OPLS(max.LV=comp, # max LV
 							validation = "LOO",method="oscorespls",cv.scale=F,# see pls for theses options
 							progress=FALSE) # see pls for theses options
 ```
-
 
 #### View optimization suggestions.
 
@@ -124,35 +84,35 @@ optimal.model
 ## $OLV
 ## [1] 2
 ```
-
 ##### ```tolerance``` is used to accept higher RMSEP but simpler models.
 
 #### Build optimized model based on optimal.model suggestions.
 
 ```r
-mods1 <- OSC.correction(progress = FALSE, pls.y = pls.y, pls.data = scaled.data, 
-    comp = optimal.model$LV, OSC.comp = optimal.model$OLV, validation = "LOO", 
-    method = "oscorespls", cv.scale = T)
+mods1<-OSC.correction(progress=FALSE,pls.y=pls.y,pls.data=scaled.data,comp=optimal.model$LV,OSC.comp=optimal.model$OLV,validation = "LOO",method="oscorespls",cv.scale=T)
 ```
-
 
 #### Get all model information.
 
 ```r
-final <- get.OSC.model(obj = mods1, OSC.comp = optimal.model$OLV)
+final<-get.OSC.model(obj=mods1,OSC.comp=optimal.model$OLV) 
 ```
 
+```
+## Error: 'names' attribute [1] must be the same length as the vector [0]
+```
 
 
 #### View model scores.
 
 ```r
-group <- factor(join.columns(pls.y))  #visualize levels of y
-plot.PLS.results(obj = final, plot = "scores", groups = group)
+group<-factor(join.columns(pls.y))#visualize levels of y 
+plot.PLS.results(obj=final,plot="scores",groups=group)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11.png) 
-
+```
+## Error: object 'final' not found
+```
 
 #### The next step for modeling would be to validate, but I will instead show complex. y modeling.
 
@@ -169,7 +129,6 @@ optimal.model<-optimize.OPLS(max.LV=comp, # max LV
 							validation = "LOO",method="oscorespls",cv.scale=F,# see pls for theses options
 							progress=FALSE)  # see pls for theses options
 ```
-
 
 #### View suggestions.
 
@@ -205,22 +164,26 @@ optimal.model
 ## [1] 4
 ```
 
-
 #### Build optimized model and plot scores.
 
 ```r
-mods1 <- OSC.correction(progress = FALSE, pls.y = pls.y, pls.data = scaled.data, 
-    comp = optimal.model$LV, OSC.comp = optimal.model$OLV, validation = "LOO", 
-    method = "oscorespls", cv.scale = T)
-final <- get.OSC.model(obj = mods1, OSC.comp = optimal.model$OLV)  # get all model information
-
-# view model scores
-group <- factor(join.columns(pls.y))  #visualize levels of y
-plot.PLS.results(obj = final, plot = "scores", groups = group)
+mods1<-OSC.correction(progress=FALSE,pls.y=pls.y,pls.data=scaled.data,comp=optimal.model$LV,OSC.comp=optimal.model$OLV,validation = "LOO",method="oscorespls",cv.scale=T)
+final<-get.OSC.model(obj=mods1,OSC.comp=optimal.model$OLV) # get all model information
 ```
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
+```
+## Error: 'names' attribute [1] must be the same length as the vector [0]
+```
 
+```r
+#view model scores
+group<-factor(join.columns(pls.y))#visualize levels of y 
+plot.PLS.results(obj=final,plot="scores",groups=group)
+```
+
+```
+## Error: object 'final' not found
+```
 
 #### An alternative to modeling a multiple Ys is to define a single Y based on the multiple columns. This will try to organize all group scores in one dimension (LV1).
 
@@ -233,7 +196,6 @@ optimal.model<-optimize.OPLS(max.LV=comp, # max LV
 							validation = "LOO",method="oscorespls",cv.scale=F,# see pls for theses options
 							progress=FALSE) 
 ```
-
 
 #### View suggestions.
 
@@ -255,28 +217,27 @@ optimal.model
 
 ```r
 # currently single LV models will cause an error so limit LV minimium to 2
-if (optimal.model$LV == 1) {
-    optimal.model$LV <- 2
-}
+if(optimal.model$LV==1){optimal.model$LV<-2}
 ```
-
 #### Build optimized model based on optimal.model suggestions.
 
 ```r
-mods1 <- OSC.correction(progress = FALSE, pls.y = pls.y, pls.data = scaled.data, 
-    comp = optimal.model$LV, OSC.comp = optimal.model$OLV, validation = "LOO", 
-    method = "oscorespls", cv.scale = T)
-final <- get.OSC.model(obj = mods1, OSC.comp = optimal.model$OLV)  # get all model information
+mods1<-OSC.correction(progress=FALSE,pls.y=pls.y,pls.data=scaled.data,comp=optimal.model$LV,OSC.comp=optimal.model$OLV,validation = "LOO",method="oscorespls",cv.scale=T)
+final<-get.OSC.model(obj=mods1,OSC.comp=optimal.model$OLV) # get all model information
 ```
 
+```
+## Error: 'names' attribute [1] must be the same length as the vector [0]
+```
 
 #### View model scores.
 
 ```r
-group <- factor(join.columns(pls.y))  #visualize levels of y
-plot.PLS.results(obj = final, plot = "scores", groups = group)
+group<-factor(join.columns(pls.y))#visualize levels of y 
+plot.PLS.results(obj=final,plot="scores",groups=group) 
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18.png) 
-
+```
+## Error: object 'final' not found
+```
 

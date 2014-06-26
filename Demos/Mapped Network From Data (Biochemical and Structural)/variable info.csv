@@ -1,0 +1,93 @@
+ID,name,Name2,HMDB,PubChem,KEGG
+1,1-2-Propandiol,Propylene glycol,HMDB01881,1030,C00583
+2,Glycolic acid,Glycolic acid,HMDB00115,757,C00160
+3,Alanine 2-TMS,L-Alanine,HMDB00161,5950,C00041
+4,S,,,,
+5,Valine 2-TMS,L-Valine,HMDB00883,6287,C00183
+6,Urea,Urea,HMDB00294,1176,C00086
+7,Benzoic acid,Benzoic acid,HMDB01870,243,C00180
+8,Serine,L-Serine,HMDB00187,5951,C00065
+9,Ethanolamine,Ethanolamine,HMDB00149,700,C00189
+10,Phosphate,Phosphoric acid,HMDB02142,1004,C00009
+11,Threonine,L-Threonine,HMDB00167,6288,C00188
+12,Glycine,Glycine,HMDB00123,750,C00037
+13,Succinic acid,Succinic acid,HMDB00254,1110,C00042
+14,2-3-Dihydroxybutyric acid,Glyceric acid,HMDB00139,439194,C00258
+15,2-4-Dihydroxybutyric acid,"2,4-Dihydroxybutanoic acid",HMDB00360,192742,
+16,3-4-Dihydroxybutyric acid,"(S)-3,4-Dihydroxybutyric acid",HMDB00337,150929,
+17,3-Aminoisobutyric acid 3-TMS,3-Aminoisobutanoic acid,HMDB03911,64956,C05145
+18,Aminomalonic acid,Aminomalonic acid,HMDB01147,100714,C00872
+19,1-2-3-Butanetriol,"(2R*,3R*)-1,2,3-Butanetriol",HMDB34778,20497,
+20,Threitol,D-Threitol,HMDB04136,169019,C16884
+21,Erythritol,Erythritol,HMDB02994,222285,C00503
+22,Pyroglutamic acid,Pyroglutamic acid,HMDB00267,7405,C01879
+23,1-Deoxypentitol,,,,
+24,Erythropentose-2-deoxy A- 2-Deoxy-ribose,,,,
+25,Erythronic or threonic acid,Erythronic acid,HMDB00613,2781043,
+26,Cysteine 3-TMS,L-Cysteine,HMDB00574,5862,C00097
+27,Creatinine 3-TMS,Creatinine,HMDB00562,588,C00791
+28,2-3-4-Trihydroxybutyric acid (Threonic or erythronic),Threonic acid,HMDB00943,151152,C01620
+29,2-Ketoglutaric acid,Oxoglutaric acid,HMDB00208,51,C00026
+30,Phenylalanine 2-TMS,L-Phenylalanine,HMDB00159,6140,C00079
+31,3-Deoxypentitol,,,,
+32,4-Hydroxyphenylacetic acid,p-Hydroxyphenylacetic acid,HMDB00020,127,C00642
+33,3-4-5-Trihydroxypentanoic acid,,,,
+34,Taurine 3-TMS,Taurine,HMDB00251,1123,C00245
+35,Lyxose A,Pectin,HMDB03402,441476,C08348
+36,Arabinose,Arabinose,HMDB29942,66308,
+37,Ribose A,D-Ribose,HMDB00283,5779,C00121
+38,Lysine,L-Lysine,HMDB00182,5962,C00047
+39,Xylitol,D-Xylitol,HMDB02917,6912,C00379
+40,Arabitol,D-Arabitol,HMDB00568,827,C01904
+41,Ribitol (Adonitol),Ribitol,HMDB00508, ,C00474
+42,Fucose (6-Deoxygalactose),L-Fucose,HMDB00174,17106,C01019
+43,cis-Aconitic acid,cis-Aconitic acid,HMDB00072,643757,C00417
+44,Ribose 4-TMS,D-Ribose,HMDB00283,5779,C00121
+45,Homovanillic acid,Homovanillic acid,HMDB00118,1738,C05582
+46,Glycerol-3-phosphate,Glycerol 3-phosphate,HMDB00126,439162,C00093
+47,Glutamine 3-TMS,L-Glutamine,HMDB00641,5961,C00064
+48,2-2-Dimethyl-3-hydroxybutyric acid,,,,
+49,Hypoxanthine,Hypoxanthine,HMDB00157,790,C00262
+50,Hippuric acid,Hippuric acid,HMDB00714,464,C01586
+51,Ornithine 3-TMS,Ornithine,HMDB00214,6262,C00077
+52,Citric acid,Citric acid,HMDB00094,311,C00158
+53,3-(3-Hydroxyphenyl)-3-hydroxypropionic acid 3-TMS,3-(3-Hydroxyphenyl)-3-hydroxypropanoic acid,HMDB02643,102959,
+54,Glucoheptonic acid 1-4-lactone,,,,
+55,Quinic acid,Quinic acid,HMDB03072, ,C06746
+56,Tyrosine,L-Tyrosine,HMDB00158,6057,C00082
+57,Sorbose,L-Sorbose,HMDB01266,441484,C08356
+58,Fructose,D-Fructose,HMDB00660,439709,C02336
+59,Galactose,D-Galactose,HMDB00143,439357,C00984
+60,Glucose,D-Glucose,HMDB00122,5793,C00031
+61,Histidine 3-TMS,L-Histidine,HMDB00177,6274,C00135
+62,Mannitol,Mannitol,HMDB00765,6251,C00392
+63,2-3-4-5-Tetrahydroxypentanoic acid 1-4-lactone,,,,
+64,Sorbitol,Sorbitol,HMDB00247,5780,C00794
+65,Isoascorbic acid,,,,
+66,Galactitol,Galactitol,HMDB00107,11850,C01697
+67,2-O-Glycerol-galactopyranoside 6-TMS,,,,
+68,Gulonic acid,Gulonic acid,HMDB03290,152304,C00800
+69,Gluconic acid,Gluconic acid,HMDB00625,10690,C00257
+70,Inositol-like,,,,
+71,Kynurenic acid,Kynurenic acid,HMDB00715,3845,C01717
+72,N-Acetylglucosamine,Beta-N-Acetylglucosamine,HMDB00803,24139,C03878
+73,Inositol,,,,
+74,Uric acid,Uric acid,HMDB00289,1175,C00366
+75,Glycine- N-(4-Hydroxybenzoyl) 2-TMS deriv.,,,,
+76,E,,,,
+77,Tryptophan 2-TMS,L-Tryptophan,HMDB00929,6305,C00078
+78,5-Hydroxyindole-3-acetic acid (5-HIAA),5-Hydroxyindoleacetic acid,HMDB00763,1826,C05635
+79,C,,,,
+80,Glycine- N-(4-Hydroxybenzoyl) 2-TMS,4-Hydroxyhippuric acid,HMDB13678,151012,
+81,F,,,,
+82,Cystine 4-TMS,L-Cystine,HMDB00192,67678,C00491
+83,2-O-Glycerol-galactopyranoside 6-TMS,,,,
+84,Pseudouridine,Pseudouridine,HMDB00767,15047,C02067
+85,Arabinofuranose- 1-2-3-4-OTMS,Arabinofuranose,HMDB12325,440921,C06115
+86,A,,,,
+87,Paracetamol glucuronide,Acetaminophen glucuronide,HMDB10316,83944,
+88,Hydroxyproline dipeptide 4-TMS,Hydroxyproline dipeptide 4-TMS, , , 
+89,Xylobiose-6-TMS,Xylobiose,HMDB29894, ,C01630
+90,Sucrose,Sucrose,HMDB00258,5988,C00089
+91,B,,,,
+92,Lactose,Alpha-Lactose,HMDB00186,84571,C00243

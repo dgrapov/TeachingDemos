@@ -5,7 +5,7 @@ Orthogonal Partial Least Squares (OPLS)
 
 
 ```{r,include=FALSE,}
-source("http://pastebin.com/raw.php?i=JVyTrYRD") # source Devium
+source("http://pastebin.com/raw.php?i=UyDBTA57") # source Devium
 ```
 
 #### Generate some random data and Y's.
