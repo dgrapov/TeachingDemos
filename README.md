@@ -27,7 +27,7 @@ I have my trial servers available once in a while. If you want to test MetaMapR 
 * [Partial Least Squares (PLS)](https://github.com/dgrapov/TeachingDemos/wiki/Partial-Least-Squares) (fast and simple)
 
 ## O-PLS/ O-PLS-DA
-* [O-PLS Example](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Predictive%20Modeling/O-PLS/OPLS_example.md)(04/08/15)
+* [O-PLS Example](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Predictive%20Modeling/O-PLS/OPLS_example.md) (04/08/15)
 * [Model permutation testing and validation](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Predictive%20Modeling/Iris%20O-PLS-DA/O-PLS%20modeling%20of%20Iris%20data.md)
 * [Comparing single to multiple Y models](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/OPLS/OPLS%20example.md)
 
