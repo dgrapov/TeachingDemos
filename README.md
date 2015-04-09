@@ -8,7 +8,8 @@ I have my trial servers available once in a while. If you want to test MetaMapR 
 * [MetaMapR](http://createdatasol.com/MetaMapR)
 * [DeviumWeb](http://createdatasol.com/DeviumWeb/)
 
-#Older Demos (see above for current versions)
+#Older Demos 
+(see above for current versions)
 * [MetaMapR](spark.rstudio.com/dgrapov/MetaMapR/)
 * [Data Visualization](http://spark.rstudio.com/dgrapov/Plotting/)
 * [Heatmaps and Hierarchical Cluster Analysis](http://spark.rstudio.com/dgrapov/Heatmap/)
