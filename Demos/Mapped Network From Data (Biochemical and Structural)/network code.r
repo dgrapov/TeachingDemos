@@ -1,7 +1,7 @@
 setwd("C:\\Users\\D\\Dropbox\\Software\\TeachingDemos\\Demos\\Mapped Network From Data (Biochemical and Structural)")
 setwd("C:\\Users\\Node\\Dropbox\\Software\\TeachingDemos\\Demos\\Mapped Network From Data (Biochemical and Structural)")
 setwd("C:\\Users\\dgrapov\\Dropbox\\Software\\TeachingDemos\\Demos\\Mapped Network From Data (Biochemical and Structural)")
-
+source("http://pastebin.com/raw.php?i=1Bs7G5ds")
 #source devium 
 source("http://pastebin.com/raw.php?i=UyDBTA57") #
 #save()
