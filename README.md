@@ -3,7 +3,7 @@ TeachingDemos
 
 Bioinformatics related demos and tutorials using the R programming language.
 
-#Demo
+#Demos
 I have my trial servers available once in a while. If you want to test MetaMapR and DeviumWeb you can contact me at dgrapov at gmail.com.
 * [MetaMapR](http://createdatasol.com/MetaMapR)
 * [DeviumWeb](http://createdatasol.com/DeviumWeb/)
