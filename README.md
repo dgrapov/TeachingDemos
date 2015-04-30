@@ -17,6 +17,10 @@ I have my trial servers available once in a while. If you want to test MetaMapR 
 * [Devium](https://github.com/dgrapov/DeviumWeb)
 
 #R Code Examples and More
+
+## Data Wrangling
+* [dplyr tutorial: verbs and split-apply](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/dplyr/hands_on_with_dplyr.md)
+
 ## Statistical Analysis
 * [Covariate Adjustment](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Statistical%20Analysis/Covariate%20Adjustment.md)
 
