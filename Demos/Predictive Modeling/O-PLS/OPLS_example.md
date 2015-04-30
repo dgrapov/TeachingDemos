@@ -1,4 +1,4 @@
-# O-PLS/-DA Modeling
+# O-PLS Modeling
 
 Load data set, and set model x and y.
 
