@@ -64,15 +64,12 @@ data %>% group_by(cyl) %>% select(one_of(vars)) %>% summarise_each(funs(median(.
 
 Switching from `base` to `dplyr` for data manipulation feels a little like this:
 
-`base` 
+`base` ![](images/BD_wasted.gif) 
 
-![](images/BD_wasted.gif) 
-
-`dplyr`
-
-![](images/AD_wasted.gif)
+`dplyr` ![](images/AD_wasted.gif)
 
 Each of the individual `dplyr` verbs are discussed in more detail below, but the use of `%>%` or the pipe operator is worth mentioning now. The `%>%` operator is imported from `magrittr` and for the purpose of this tutorial we can simply think of it as `then`. From the cheatsheet referenced above:
+
 ![](images/pipe.png)
 
 ****
