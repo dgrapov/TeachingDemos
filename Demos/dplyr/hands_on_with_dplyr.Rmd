@@ -1,0 +1,462 @@
+---
+title: "Hands-on with dplyr"
+author: "Dmitry Grapov"
+output:
+  html_document:
+    keep_md: yes
+---
+
+## Introduction
+
+This is meant to be an introduction to [dplyr](http://cran.r-project.org/web/packages/dplyr/index.html) which covers dplyr basics, gets into a little bit of programming with dplyr and ends with brief mention of some gotchas and a benchmarking comparison to base for the split-apply strategy. You might also find [Rstudio](http://www.rstudio.com/)'s [Data Wrangling Cheat Sheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) featuring dplyr useful (this is also where I borrowed some of the images used in this tutorial).
+
+The [dplyr](http://cran.r-project.org/web/packages/dplyr/index.html) package from [Hadley Wickham](http://had.co.nz/) is plain awesome. It features consistent and succinct syntax, is computationally fast and getting better with every release. The `dplyr` package has replaced many common more verbose R idioms which I had to previously rely upon for most common data analysis tasks. 
+
+For example, many data analysis tasks involve the procedure of splitting the data set based on a grouping variable and then applying a function to each of the groups (split-apply). Lets say I want to calculate the median values for a few parameters for cars with different numbers of cylinders using the [mtcars](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html) data set. 
+
+Set up the data for the example.
+```{r,warning=FALSE,message=FALSE}
+#some data prep
+data(mtcars)
+data<-mtcars
+data$cyl<-factor(data$cyl)
+```
+
+Split-lapply-apply in `base`: 
+```{r,warning=FALSE,message=FALSE}
+#select some variable of interest
+vars<-c("mpg","wt","qsec")
+tmp.data<-data[,colnames(data)%in%vars]
+
+#split the data on the number of cylinders
+big.l<-split(tmp.data,data$cyl)
+
+#apply some function of interest to all columns
+results<-lapply(big.l, function(x) apply(x,2,median))
+
+#bind results and add splitting info
+data.frame(cyl=names(results),do.call("rbind",results))
+```
+
+Now the same process using `dplyr`:
+```{r,warning=FALSE,message=FALSE}
+suppressPackageStartupMessages(library(dplyr))
+
+#variables of interest
+vars<-c("mpg","wt","qsec")
+
+data %>% group_by(cyl) %>% select(one_of(vars)) %>% summarise_each(funs(median(.)))
+```
+
+Switching from `base` to `dplyr` for data manipulation feels a little like this:
+
+`base` ![](images/BD_wasted.gif) 
+
+`dplyr`![](images/AD_wasted.gif)
+
+Each of the individual `dplyr` verbs are discussed in more detail below, but the use of `%>%` or the pipe operator is worth mentioning now. The `%>%` operator is imported from `magrittr` and for the purpose of this tutorial we can simply think of it as `then`. From the cheatsheet referenced above:
+![](images/pipe.png)
+
+****
+
+## Overview of common dplyr functions and verbs
+ I highly recommend that you take a look at the `dplyr` [vignetts](http://cran.r-project.org/web/packages/dplyr/index.html) for more detailed description of all of this packages capabilities. 
+One immediate addition in `dplyr` you might notice is  `tbl_df` which is a local data frame and mostly behaves like the classical `data.frame` but is more convenient for working with large data.
+```{r}
+tbl_df(mtcars)
+# control the number of rows
+print(tbl_df(mtcars),n=5)
+```
+
+You can can make sure all columns are output to the screen using `options(dplyr.width = Inf)`.
+`glimpse` is another useful function which is an analogue of `str` but tries to show you more of the data.
+
+```{r}
+str(mtcars)
+glimpse(mtcars)
+```
+
+For the purpose of this tutorial we will be mostly working with data.frames, however it should be noted that dplyr syntax abstracts away the need to specify the kind of object being manipulated and most everything we will cover can also be applied to interact with a variety of database objects. 
+
+The most common `dplyr` functions also referred to as verbs are as follows (see more in the [introduction](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) vignette):
+
+* filter() and slice()
+* arrange()
+* select() and rename()
+* mutate() and transmute()
+* summarise()
+* group_by()
+
+The following commands will be demonstrated using the [hflights](http://cran.r-project.org/web/packages/hflights/index.html) data set.
+```{r}
+suppressPackageStartupMessages(library(hflights))
+(flights <- tbl_df(hflights))
+```
+Which contains `r nrow(flights)` records for `r ncol(flights)` variables for flights departing Houston airport for 2011.
+
+### Filter
+Use `filter` to keep or select rows matching some criteria or condition(s).
+![](images/filter.png)
+
+`base`
+```{r}
+flights[flights$Month == 1 & flights$DayofMonth == 1, ]
+#could have also used subset
+subset(flights, Month == 1 & DayofMonth == 1)
+#be wary of using subset programmatically: http://stackoverflow.com/questions/9860090/in-r-why-is-better-than-subset
+```
+
+`dplyr`
+```{r}
+#comma is the same as an ampersand (&)
+filter(flights, Month == 1, DayofMonth == 1)
+
+# use pipe(|) for or
+filter(flights, Month == 1 | DayofMonth == 1)
+```
+
+We can also include any of the following operators in filter.
+
+![](images/logic.png)
+
+Slice is a variant of filter used to extract rows based on position.
+
+`base`
+```{r}
+flights[1:10,]
+```
+
+`dplyr`
+```{r}
+slice(flights, 1:10)
+```
+
+****
+
+## Arrange
+Order data based on specified columns.
+
+`base`
+```{r}
+flights[order(flights$Month),]
+```
+
+`dplyr`
+```{r}
+arrange(flights,Month)
+
+#decreasing order
+arrange(flights,desc(Month))
+
+#break ties using more columns
+arrange(flights,desc(Month),DayOfWeek)
+```
+
+****
+
+### Select
+Select columns from the data.
+
+`base`
+```{r}
+flights[,colnames(flights)%in%c("Month","DayOfWeek")]
+```
+
+`dplyr`
+```{r}
+select(flights,Month,DayOfWeek)
+
+#select using a dynamic variable
+variables<-c("Month","DayOfWeek")
+select(flights,one_of(variables))
+
+#remove variables
+select(flights,one_of(variables),-Month)
+
+```
+
+Select also provides many regular expression wrappers.
+
+![](images/select.png)
+
+Use `rename` to change column names.
+```{r}
+rename(flights,diverted=Diverted)
+```
+
+****
+
+### Mutate and Transmute
+Use theses verbs to create a new column variable which in the case of `mutate` will be added to the or created as a stand-alone variables `transmute`. 
+
+![](images/mutate_1.png)
+
+Lets calculate the wait time based on the difference between `ArrTime` and `DepTime`.
+
+`base`
+```{r}
+#transmute like
+head(wait<-flights$ArrTime - flights$DepTime)
+
+#mutate like
+head(flights2<-cbind(flights,wait))
+
+```
+
+`dplyr`
+```{r}
+#stand alone
+transmute(flights,diff = ArrTime - DepTime)
+
+#added to data
+mutate(flights,diff = ArrTime - DepTime)
+```
+
+Many dplyr functions will let you use newly create variables in the same function which is creating the variable in the first place.
+
+![](images/inception.png)
+```{r}
+transmute(flights,diff = ArrTime - DepTime, ratio = ArrTime/diff, ratio2 = diff/ratio)
+```
+
+The `mutate_each` function can be used to apply a function to every column in the dataframe. Lets bin each column into quartiles using the `ntile` function.
+```{r}
+glimpse(mutate_each(flights,funs(ntile(.,n=4))))
+```
+
+Here is a list of some other `dplyr` convenience functions.
+
+![](images/mutate_2.png)
+
+****
+
+### Summarise
+Carry out a function on the data frame returning a single value.
+
+![](images/summarise_1.png)
+
+Lets calculate the range for wait times and use this as an opportunity to involve `%>%`.
+```{r}
+transmute(flights,diff = ArrTime - DepTime) %>% summarise(.,min=min(diff,na.rm=TRUE),max=max(diff,na.rm=TRUE))
+```
+
+Either we just discovered time travel or we should have been referencing the day and time in our calculation of the difference between arrival and departure. Lets count how many calculations we may have screwed up.
+
+```{r}
+(bad<-transmute(flights,diff = ArrTime - DepTime) %>% filter(diff<0) %>% count(.))
+```
+An error rate of `r round(bad/nrow(flights)*100,1)` %may or may not be acceptable.
+
+We can use `summarise_each` to apply a function to every column in the data set. Lets calculate the median and median absolute deviation for every numeric variable.
+```{r}
+vars<-colnames(flights)[sapply(flights,is.numeric)]
+flights %>% select(one_of(vars)) %>% summarise_each(.,funs(median=median(.,na.rm=TRUE),mad=mad(.,na.rm=TRUE)))
+```
+
+Here are some additional functions which can be used with summarise.
+
+![](images/summarise_2.png)
+
+*****
+##Group_by
+Break the data sets into groups of rows.
+
+![](images/group_by.png)
+
+`group_by` adds the final piece of the puzzle we need to execute the split-apply strategy to our hearts content. This function becomes very powerful when combined with the previously discussed `dplyr` verbs. For example lets calculate which day of the week has the most cancellations.
+
+```{r}
+flights %>% group_by(DayOfWeek) %>% 
+  select(Cancelled)  %>% summarise_each(funs(canceled=sum(.,na.rm=TRUE),
+                                             total=n(),
+                                             percent_cancelled=round(canceled/total*100,1)))
+```
+
+We can also use `group_by` to generate groups using more than one variable. For example lets calculate the median `AirTime` times by `Distance` and `TailNum`.
+```{r}
+(slowest<-flights %>% group_by(Distance,TailNum) %>% 
+  select(AirTime)  %>% summarise_each(funs(mean(.,na.rm=TRUE))))
+```
+
+Lets identify the 3 slowest and fastest planes based on `AirTime` for some arbitrary `Distance`.
+```{r}
+#choose arbitrary distance
+tmp<-slowest %>% na.omit(.) %>% 
+  filter(.,Distance==781) %>%
+  arrange(AirTime)
+
+#not clear why, but the results can't be bound directly
+tmp %>% head(.,3)
+tmp %>% tail(.,3) %>% arrange(desc(.))
+```
+
+A common data analysis task might be to carry out some group-wise normalization or adjustments of the data. For example we may want to calculate the day of the week with the slowest flights, but also adjust for differences between individual planes. To do this we will start by calculating the average speed for each plane.
+
+```{r}
+#calculate speed
+flights<-flights %>% mutate(hrs=AirTime/60, speed=Distance/hrs)
+
+(averages<-flights %>%
+  group_by(TailNum) %>% 
+  select(.,speed) %>%
+  summarise_each(funs(mean(.,na.rm=TRUE))) %>% 
+  rename(.,mean_speed=speed))
+```
+
+Next lets express the overall speed for each plane as ratio to the mean plane speed. To do this we will use one of the powerful join capabilities in `dplyr`.
+
+![](images/join_1.png)
+
+We will join with the original data set based on `TailNum` and calculate the plane-adjusted measure of speed.
+
+```{r}
+right_join(flights,averages,by="TailNum") %>%
+  mutate(norm_speed = speed / mean_speed) %>% 
+  group_by(DayOfWeek) %>% 
+  select(contains("speed")) %>%
+  summarise_each(funs(mean(.,na.rm=TRUE)))
+```
+
+So if things worked out like we expected it looks like Saturday flights are fastest and Tuesday the slowest.
+
+### Using dplyr programmatically
+Most of the examples up to this point featured using `dplyr` in interactive mode. However there are variants of nearly every verb which are best suited for use inside other functions. To see what theses are take a look at `verb_` versions of each function (e.g. `summarise_`).
+
+### Benchmarking split-apply in base and dplyr
+Finally I will wrap with a relatively non-sophisticated benchmarking head-to-head comparison of `base` and `dplyr` speed for the almighty split-apply strategy.
+
+Lets set up the data.
+```{r,warning=FALSE,message=FALSE}
+rows<-10000
+cols<-100
+groups<-100
+samples<-rows/groups
+tmp.data<-data.frame(matrix(rnorm(rows),rows,cols))
+tmp.data$group<-rep(1:groups,each=samples)
+```
+
+This data set has `r rows` rows, `r cols` columns and `r groups` groups with `r samples` samples each.
+
+`base` ![](images/sad_face.png)
+```{r,warning=FALSE,message=FALSE}
+ptm <- Sys.time()
+#split the data on the number of cylinders
+big.l<-split(tmp.data,tmp.data$group)
+
+#apply some function of interest to all columns
+results<-lapply(big.l, function(x) apply(x,2,median))
+
+#bind results and add splitting info
+results<-data.frame(group=names(results),do.call("rbind",results))
+
+#elapsed time
+(bd<-Sys.time()-ptm )
+
+```
+
+`dplyr` ![](images/happy_face.gif)
+```{r,warning=FALSE,message=FALSE}
+ptm <- Sys.time()
+
+results<-tmp.data %>% group_by(group) %>% summarise_each(funs(median(.)))
+
+#elapsed time
+(ad<-Sys.time()-ptm )
+```
+
+Wow I just saved `r bd - ad ` seconds  of my life!
+
+
+Create a benchmark visualization comparing base to dplyr for differing number of groups, rows and columns. Uncomment the code in the appendix below and modify as needed to re-run the benchmark.
+```{r,warning=FALSE,message=FALSE,fig.width = 10,fig.width = 10}
+
+load(file="benchmark results")
+
+#create a plot
+library(reshape2)
+library(ggplot2)
+tmp.data<-melt(res,id.vars=c("rows","columns","groups","samples")) %>% mutate(seconds=value*60)
+
+ggplot(tmp.data, aes(y=seconds,x=groups,group=variable,color=variable)) + geom_line() +geom_point()+ facet_grid(rows ~ columns) +scale_y_log10()
+```
+
+The plot above shows the calculation time for 10 replications in seconds (y-axis) for calculating the median of varying number of groups (x-axis), rows (y-facet) and columns (y-facet).
+
+*****
+
+### Gotchas
+1. In `dplyr` rownames are a second class citizen and are not stored.
+2. Even though nearly every `dplyr` tutorial features pipes (`%>%`) it may be easier to learn both `dplyr` and `%>%` separately.
+3. Most `dplyr` functions only work on objects coercible to ~ `data.frames`. Lots of my debugging sessions start with trying to understand the data structure of objects I am passing to `dplyr`. 
+
+*****
+
+### Appendix
+```{r,warning=FALSE,message=FALSE}
+# 
+# #set up functions to time
+# base_fun<-function(data){
+#       #split the data on the number of cylinders
+#     big.l<-split(data,data$group)
+#     
+#     #apply some function of interest to all columns
+#     results<-lapply(big.l, function(x) apply(x,2,median))
+#     
+#     #bind results and add splitting info
+#     data.frame(group=names(results),do.call("rbind",results))
+# }
+# 
+# dplyr_fun<-function(data){
+#   
+#   data %>% group_by(group) %>% summarise_each(funs(median(.)))
+# }
+# 
+# #benchmark function
+# benchmark_fun<-function(rows,cols,groups){
+#   
+#   #set up data
+#   samples<-floor(rows/groups)
+#   tmp.data<-data.frame(matrix(rnorm(rows),rows,cols))
+#   tmp.data$group<-rep(1:groups,length.out=rows)
+#   
+#   #base
+#   base.time<-system.time(replicate(10,base_fun(tmp.data)))
+#   
+#   #dplyr
+#   dplyr.time<-system.time(replicate(10,dplyr_fun(tmp.data)))
+#   
+#   data.frame(rows=rows,columns=cols,groups=groups,samples=samples,base=signif(base.time["elapsed"]/10,3),dplyr=signif(dplyr.time["elapsed"]/10,3))
+#   
+# }
+# 
+# #run benchmarks
+# len<-5
+# groups<-seq(5, 100,length.out=len) %>% signif(.,0)
+# rows<-seq(100, 10000,length.out=len) %>% signif(.,0)
+# cols<-seq(10, 100,length.out=len) %>% signif(.,0)
+# 
+# #benchmarks
+# results<-list()
+# counter<-1
+# for(i in 1:length(groups)){ 
+#   .group<-groups[i]
+#   for(j in 1:length(rows)){
+#     .row<-rows[j]
+#     for(k in 1:length(cols)){
+#       .col<-cols[k]
+#        results[[counter]]<- benchmark_fun(.row,.col,.group)
+#       counter<-counter+1
+#     }
+#   }  
+# } 
+# 
+# 
+# res<-do.call("rbind",results)
+# save(res,file="benchmark results")
+# #create a plot
+# library(reshape2)
+# library(ggplot2)
+# tmp.data<-melt(res,id.vars=c("rows","columns","groups","samples")) %>% mutate(seconds=value*60)
+# 
+# ggplot(tmp.data, aes(y=seconds,x=groups,group=variable,color=variable)) + geom_line() +geom_point()+ facet_grid(columns ~ rows) +scale_y_log10()
+```
