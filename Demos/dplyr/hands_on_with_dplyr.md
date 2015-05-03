@@ -1068,7 +1068,7 @@ ggplot(tmp.data, aes(y=seconds,x=groups,group=variable,color=variable)) + geom_l
 
 ![](hands_on_with_dplyr_files/figure-html/unnamed-chunk-31-1.png) 
 
-The plot above shows the calculation time for 10 replications in seconds (y-axis) for calculating the median of varying number of groups (x-axis), rows (y-facet) and columns (y-facet).
+The plot above shows the calculation time for 10 replications in seconds (y-axis) for calculating the median of varying number of groups (x-axis), rows (y-facet) and columns (x-facet).
 
 *****
 
