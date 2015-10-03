@@ -4,7 +4,7 @@ TeachingDemos
 Bioinformatics related demos and tutorials using the R programming language.
 
 #Demos
-I have my trial servers available once in a while. If you want to test MetaMapR and DeviumWeb you can contact me at dgrapov at gmail.com.
+My [trial server](http://createdatasol.com/) is up !!!. If you want to test MetaMapR and DeviumWeb you can contact me at dgrapov at gmail.com.
 * [MetaMapR](http://createdatasol.com/MetaMapR)
 * [DeviumWeb](http://createdatasol.com/DeviumWeb/)
 
@@ -17,6 +17,10 @@ I have my trial servers available once in a while. If you want to test MetaMapR 
 * [Devium](https://github.com/dgrapov/DeviumWeb)
 
 #R Code Examples and More
+
+## Data Wrangling
+* [dplyr tutorial: verbs and split-apply](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/dplyr/hands_on_with_dplyr.md)
+
 ## Statistical Analysis
 * [Covariate Adjustment](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Statistical%20Analysis/Covariate%20Adjustment.md)
 
