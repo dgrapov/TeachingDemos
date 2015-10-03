@@ -18,6 +18,9 @@ My [trial server](http://createdatasol.com/) is up !!!. If you want to test Meta
 
 #R Code Examples and More
 
+## Data Analysis Examples
+* [Metabolomic and Proteomic Data Analysis 2015](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Data%20Analysis%20Workflow/report/report.md)
+
 ## Data Wrangling
 * [dplyr tutorial: verbs and split-apply](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/dplyr/hands_on_with_dplyr.md)
 
