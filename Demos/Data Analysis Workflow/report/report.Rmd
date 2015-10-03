@@ -1,5 +1,7 @@
 ---
-output: html_document
+output:
+  html_document:
+    keep_md: yes
 ---
 
 ##### The following is an example of a data analysis strategy for an integrated metabolomic and proteomic data set. This tutorial is meant to give examples of some of the major common steps in an omic integration analysis workflow. You can check out all of the code in `/report/report.Rmd`.
