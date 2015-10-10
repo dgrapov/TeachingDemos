@@ -218,7 +218,7 @@ do.call("plot.PCA",p.args)
 
 ****
 
-#### [Part 3](hhttp://www.slideshare.net/dgrapov/data-analysis-workflows-part-2-2015?related=1)
+#### [Part 3](http://www.slideshare.net/dgrapov/data-analysis-workflows-part-2-2015?related=1)
 
 <iframe width="420" height="315" src="http://www.slideshare.net/dgrapov/data-analysis-workflows-part-2-2015?related=1" frameborder="0" allowfullscreen></iframe>
 
