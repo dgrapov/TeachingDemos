@@ -1,8 +1,8 @@
 
 #### [Part 1](http://www.slideshare.net/dgrapov/data-analysis-workflows-part-1-2015)
 
-<a href="http://www.slideshare.net/dgrapov/data-analysis-workflows-part-1-2015">
-<img src=""http://image.slidesharecdn.com/dataanalysisworkflowspart12015-151010014252-lva1-app6891/95/data-analysis-workflows-part-1-2015-1-638.jpg?cb=1444443320" border="0">
+<a href="http://www.slideshare.net/dgrapov/data-analysis-workflows-part-1-2015" target="_blank">
+<img src="http://image.slidesharecdn.com/dataanalysisworkflowspart12015-151010014252-lva1-app6891/95/data-analysis-workflows-part-1-2015-1-638.jpg?cb=1444443320" border="0">
 </a>
 
 ##### The following is an example of a data analysis strategy for an integrated metabolomic and proteomic data set. This tutorial is meant to give examples of some of the major common steps in an omic integration analysis workflow. You can check out all of the code in `/report/report.Rmd`.
