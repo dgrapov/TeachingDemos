@@ -16,7 +16,7 @@ output:
 4. functional analysis
 
 
-```{r,warning=FALSE,echo=FALSE,message=FALSE}
+```{r,warning=FALSE,echo=TRUE,message=FALSE}
 #set working directory
 wd<-"C:/Users/Dmitry/Dropbox/Software/TeachingDemos/Demos/Data Analysis Workflow/"
 setwd(wd)
@@ -41,7 +41,7 @@ source("http://pastebin.com/raw.php?i=UyDBTA57")
 ```
 
 
-```{r,warning=FALSE,echo=FALSE,message=FALSE}
+```{r,warning=FALSE,echo=TRUE,message=FALSE}
 #load data
 setwd(wd)
 load(file="data/data cube") # data.obj
@@ -49,7 +49,7 @@ load(file="data/data cube") # data.obj
 
 ##### This data set contains `r ncol(data.obj$raw$data)` measurements for `r nrow(data.obj$raw$data)` samples. The samples are comprised of sick and healthy patients measured across two analytical batches.
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 table(data.obj$raw$sample.meta$group)
 table(data.obj$raw$sample.meta$batch)
 ```
@@ -64,7 +64,7 @@ table(data.obj$raw$sample.meta$batch)
 
 ##### PCA has three main components we can use to evaluate our data. 
 ##### 1. Variance explained by each component
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 data.cube<-data.obj$raw
 args<-list(  pca.data 		= data.cube$data,
 			pca.algorithm 	= "svd",
@@ -81,7 +81,7 @@ res<-devium.pca.calculate(args,return="list",plot=TRUE)
 ##### The scree plot above shows the total variance in the data explained (top) and the cumulative varince explained (bottom) by each principal component (PC). The green bars in the bottom plot show the cross-validated variance explained which can be used to give us an idea bout the stability of calculated components. How many PCs to keep can be determined based on a few criteria 1) each PC should explain some minnimum variance and 2)  calculate enough PCS to explain some target variance. The hashed line in the top plot shows PCs which explain less than 1% variance and the hashed line in the bottom plot shows how many PCs arerequired to explain 80% of the varince in the data. Based on an evaluation of the scree plot we may select 2 or 3 PCs. The cross-validated varince explained (green bars) also suggest that the variance explained does not increase after the first 2 PCs.
 
 ##### 2. The sample scores can be used to visualize multivariete similarities in samples given all the varibles for each PC. Lets plot the scores and highlight the sick and healthy groups.
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 #plot results
 #scores highlighting healthy and sick
 p.args<-list( 
@@ -98,7 +98,7 @@ do.call("plot.PCA",p.args)
 #### Based on the scores above the sick and healthy samples look fairly similiar. Lets next look at the variable loadings.
 #### 3. Variable loadings show the contribution of each varible to the calculated scores.
 
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 #loadings
 p.args<-list( 
   		pca = res,
@@ -115,7 +115,7 @@ do.call("plot.PCA",p.args)
 
 #### Next lets recalculate the PCA and mean center and scale all the variables by their standard deviation (autoscale).
 #### Variance explained
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 args<-list(  pca.data 		= data.cube$data,
 			pca.algorithm 	= "svd",
 			pca.components 	= 8,
@@ -129,7 +129,7 @@ res2<-devium.pca.calculate(args,return="list",plot=TRUE)
 ```
 
 #### Variable loadings
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 #loadings
 p.args<-list( 
 			pca = res2,
@@ -142,7 +142,7 @@ do.call("plot.PCA",p.args)
 ```
 
 #### Sample scores
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 #plot results
 #scores highlighting healthy and sick
 p.args<-list( 
@@ -161,7 +161,7 @@ do.call("plot.PCA",p.args)
 3. There is an unexplained group structure in the score.
 
 #### Next we can try mapping other meta data to score to see if we can explain the cluster pattern. Lets show the analytical batches in the samples scores.
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 p.args<-list( 
   		pca = res2,
 			results = "scores",
@@ -188,7 +188,7 @@ do.call("plot.PCA",p.args)
 
 ##### Next lets carry out a statistical analysis and summarise the changes between the sick and ghealthy groups. Below we identify significantly altered analytes using a basic t-test with adjustment for multiple hypotheses tested. We probably want to use more sophisticated and non-parametric tests for real applications.
 
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 #get summaries and t-test stats
 data.cube<-data.obj$normalized
 data<-data.cube$data
@@ -203,7 +203,7 @@ stats.obj %>% arrange(group_p.values) %>% head(.)
 ```
 
 #### We can visualize the differences in means for the top most altered metabolite and protein as a box plot.
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 top.met<-stats.obj %>% filter(type =="metabolite") %>% 
   arrange(group_p.values) %>% dplyr::select(ID) %>% 
   dplyr:: slice(.,1) %>% unlist(.) %>% as.character(.)
@@ -232,7 +232,7 @@ ggplot(tmp.data,aes_string(x="group",y=colnames(tmp.data)[1],fill="group")) +
 
 #### Next we can try a generate a non-linear multivarite classification model to identify important variables in our data. Below we will train and validate a random forest classifier. The full data set is split into 2/3 trainning and 1/3 test set while keeping the propotion of sick and healthy samples equivalent. The model is trained using 3-fold cross-validation repeated 3 times and the ```mtry``` parameter is optimized to maximize the are under the reciever operator characteristic curve (AUCROC).
 
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 #create a classification model using random forests
 #generate training/test set
 set.seed(998)
@@ -265,12 +265,12 @@ fit<- train(train.y ~ ., data = train.data,
 ```
 
 #### Below the optimal model is chosen while varying the ```mtry``` or the number of variables randomly sampled as candidates at each split. 
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 fit
 ````
 
 #### Next we can evaluate the model performance based on predictions for the test set. We can also look at the ROC curve. 
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 #predict the test set
 pred<-predict(fit,newdata=test.data)
 prob<-predict(fit,newdata=test.data,type="prob")
@@ -281,13 +281,13 @@ twoClassSummary(data=data.frame(obs,pred,prob),lev=levels(pred))
 ```
 
 #### We can also look at the ROC curve. 
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 x<-roc(obs,prob[,levels(pred)[1]],silent = TRUE)
 plot(x)
 ```
 
 #### Having validated our model next we can look at the most important variables driving the classification. We can look at the differences in performance when each variable is randomly permuted or the VIP.
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 #need to get variable names
 vip<-varImp(fit)$importance # need to keep rownames
 vip<-vip[order(vip[,1],decreasing=TRUE),,drop=FALSE][1:10,,drop=FALSE]
@@ -312,7 +312,7 @@ ggplot(tmp.data,aes_string(x="group",y=colnames(tmp.data)[1],fill="group")) +
 
 #### Finally we can identify enriched biological pathways based on the integrated changes in genes and proteins. [IMPaLA: Integrated Molecular Pathway Level Analysis](http://impala.molgen.mpg.de/) can be used to calculate enriched pathways in genes or proteins and metabolites.To do this we can querry the significantly alterd proteins and metabolites for enriched pathways (see `results/statistical_results_sig.csv`). We can view the full analysis results in `results/IMPaLA_results.csv`. next lets take an enriched pathway and fisualize the fold changes between sick and healthy in the enriched species. 
 
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 #format data to show fold changes in pathway
 #get formatted data for pathview
 library(KEGGREST)
@@ -338,17 +338,17 @@ path<-"Glycolysis / Gluconeogenesis"
 #### Lets take a looka at the `r path` pathway. Our data needs to be formatted as below. You can also take a look at the following more detailed example of [mapping fold changes to biochemical pathways](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Pathway%20Analysis/KEGG%20Pathway%20Enrichment.md).
 
 #### Metabolite data showing KEGG ids and log fold change
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 head(met)
 ```
 
 #### Protein data showing the Entrez gene name and log fold changes
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 head(prot)
 ```
 
 #### Next we need to get the pathway code for or pathway of interest.
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 data(korg)
 organism <- "homo sapiens"
 matches <- unlist(sapply(1:ncol(korg), function(i) {
@@ -358,7 +358,7 @@ matches <- unlist(sapply(1:ncol(korg), function(i) {
 ```
 
 #### Now we can visualize the changes between sick and healthy in the `r path` pathway.
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
 
 setwd(wd)
 pathways <- keggList("pathway", kegg.code)
