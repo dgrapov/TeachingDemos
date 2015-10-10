@@ -1,5 +1,7 @@
 
-<iframe src="http://www.slideshare.net/dgrapov/data-analysis-workflows-part-1-2015"></iframe>
+#### [Part 1](http://www.slideshare.net/dgrapov/data-analysis-workflows-part-1-2015)
+
+<iframe src="http://www.slideshare.net/dgrapov/data-analysis-workflows-part-1-2015" frameborder="0" allowfullscreen></iframe>
 
 ##### The following is an example of a data analysis strategy for an integrated metabolomic and proteomic data set. This tutorial is meant to give examples of some of the major common steps in an omic integration analysis workflow. You can check out all of the code in `/report/report.Rmd`.
 
@@ -216,7 +218,9 @@ do.call("plot.PCA",p.args)
 
 ****
 
-<iframe src="http://www.slideshare.net/dgrapov/data-analysis-workflows-part-2-2015?related=1"></iframe>
+#### [Part 3](hhttp://www.slideshare.net/dgrapov/data-analysis-workflows-part-2-2015?related=1)
+
+<iframe width="420" height="315" src="http://www.slideshare.net/dgrapov/data-analysis-workflows-part-2-2015?related=1" frameborder="0" allowfullscreen></iframe>
 
 ### Statistical Analysis
 
