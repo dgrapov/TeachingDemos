@@ -9,10 +9,6 @@ See here for more [O-PLS](https://raw.github.com/dgrapov/devium/master/R/Devium%
 source("http://pastebin.com/raw.php?i=UyDBTA57") # source Devium
 ```
 
-```
-## [1] "can't load: https://raw.githubusercontent.com/dgrapov/devium/master/R/Devium%20PCA.r"
-```
-
 O-PLS-DA demo using Iris data
 The goal is to predict the species of the flower based on four physical properties.
 
@@ -107,10 +103,10 @@ OSC.validate.model(model=final,perm=permuted.stats)
 ```
 
 ```
-##                            RX2                  Q2            RMSEP
-## model                    99.51              0.9246           0.2242
-## permuted model 99.05 +/- 0.747 -0.08075 +/- 0.0541 0.837 +/- 0.0528
-## p-value               7.56e-05           4.078e-64        4.087e-54
+##                            RX2                  Q2             RMSEP
+## model                    99.54              0.9226            0.2271
+## permuted model 99.41 +/- 0.455 -0.06364 +/- 0.0361 0.8436 +/- 0.0468
+## p-value                0.05058           2.664e-72         8.228e-57
 ```
 
 - Q2 represents the in-bag or error for the training data 
@@ -136,10 +132,10 @@ OSC.validate.model(model=mods,perm=permuted.stats,train=train.stats)
 ```
 
 ```
-##                            Xvar                  Q2             RMSEP
-## model          99.51 +/- 0.0777   0.8982 +/- 0.0393 0.2233 +/- 0.0243
-## permuted model  99.05 +/- 0.747 -0.08075 +/- 0.0541  0.837 +/- 0.0528
-## p-value               6.745e-05           2.076e-86         1.068e-61
+##                           Xvar                  Q2             RMSEP
+## model           99.59 +/- 0.35   0.9007 +/- 0.0436 0.2248 +/- 0.0209
+## permuted model 99.41 +/- 0.455 -0.06364 +/- 0.0361 0.8436 +/- 0.0468
+## p-value                0.01923          1.184e-132         1.331e-64
 ```
 
 This suggests that we have a strong model (far better than random chance) which capable of correctly predicting the species of the flower.
@@ -191,7 +187,7 @@ legend(.75,1,levels(iris[,5]),fill=rainbow(nlevels(iris[,5]),alpha=.75),bty="n")
 O-PLS-DA becomes very useful when there are many variables. Model loadings on LV 1 (x-axis) can be used to linearly rank variables with respect to explaining differences in samples which are represented by the model scores. This approach is useful for reducing multidimensional comparisons (e.g. multiple class comparisons, genotype/treatment/time point) to single dimensional ranking of each variable representing it's weight for explaining a given hypothesis (Y) and the goodness of the answer depends on the strength of the produced model. 
 
 <a name="vergin_versi"/>
-#### Lets see if we can build a model to discriminate between verginica and versicolor and compare performance between O-PLS-DA and random 
+#### Lets see if we can build a model to discriminate between verginica and versicolor and compare performance between O-PLS-DA and Random Forest (RF).
 #### Predict classes using O-PLS-DA
 Lets split the data into train (2/3) test (1/3) sets and compare O-PLS-DA to Random Forest classification performance.
 
