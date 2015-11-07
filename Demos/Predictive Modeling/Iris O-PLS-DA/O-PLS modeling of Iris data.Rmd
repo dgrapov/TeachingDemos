@@ -17,6 +17,7 @@ This demonstration is focused on O-PLS-DA model:
 - [permutation testing](#perm)
 - [internal cross-validation](#intOOB)
 - [external cross-validation](#extOOB)
+- [Comparison of O-PLS-DA and Random Forest classification](#vergin_versi) (updated 11/7/15)
 
 
 <a name="prep"/>
@@ -73,7 +74,8 @@ plot.OSC.results(mods,plot="scores",groups=tmp.group)
 ```
 Non-overlapping scores for each species could signify a well fit model, but we need to carry out some further validations to be sure.
 ```{r,warning=FALSE, message= FALSE}
-plot.PLS.results(obj=final,plot="scores",groups=tmp.group)
+# plot.PLS.results(obj=final,plot="scores",groups=tmp.group)
+plot.PLS(obj=final, results = "scores", color=data.frame(species=tmp.group), group.bounds="ellipse",g.alpha=.5, label=FALSE)
 ```
 Ideally the within species variance should be maximally orthogonal to the between species variance (our goal to maximize)in this case we see this represented by the vertical spread of the three species scores.
 
@@ -81,10 +83,10 @@ Ideally the within species variance should be maximally orthogonal to the betwee
 # Permutation Testing
 Next we can compare our model fit to random chance. We can do this using permutation testing by generating models for a randomly permuted species label (Y). We will generate 50 permuted models and compare their performance statics to our model. We also first want to generate a pseudo-training/test split for our training data in order to correctly simulate the RMSEP. The permuted models will be fit using the pseudo-training data and then used to predict the species label for the pseudo-test set.
 ```{r,warning=FALSE, message= FALSE}
-train.test.index=test.train.split(nrow(scaled.data),n=100,strata=as.factor(tmp.y)) # strata controls if the species are sampled from equally
-permuted.stats<-permute.OSC.PLS(data=scaled.data,y=as.matrix(tmp.y),n=50,ncomp=2,osc.comp=1, progress=FALSE,train.test.index=train.test.index)
+train.test.index<- test.train.split(nrow(scaled.data),n=100,strata=as.factor(tmp.y)) # strata controls if the species are sampled from equally
+permuted.stats<- permute.OSC.PLS(data=scaled.data,y=as.matrix(tmp.y),n=50,ncomp=2,osc.comp=1, progress=FALSE,train.test.index=train.test.index)
 #look how our model compares to random chance
-OSC.validate.model(model=mods,perm=permuted.stats)
+OSC.validate.model(model=final,perm=permuted.stats)
 
 ```
 
@@ -148,6 +150,131 @@ legend(.75,1,levels(iris[,5]),fill=rainbow(nlevels(iris[,5]),alpha=.75),bty="n")
 
 O-PLS-DA becomes very useful when there are many variables. Model loadings on LV 1 (x-axis) can be used to linearly rank variables with respect to explaining differences in samples which are represented by the model scores. This approach is useful for reducing multidimensional comparisons (e.g. multiple class comparisons, genotype/treatment/time point) to single dimensional ranking of each variable representing it's weight for explaining a given hypothesis (Y) and the goodness of the answer depends on the strength of the produced model. 
 
+<a name="vergin_versi"/>
+#### Lets see if we can build a model to discriminate between verginica and versicolor and compare performance between O-PLS-DA and random 
+#### Predict classes using O-PLS-DA
+Lets split the data into train (2/3) test (1/3) sets and compare O-PLS-DA to Random Forest classification performance.
+```{r,warning=FALSE, message= FALSE}
+library(dplyr)
+library(caret)
+# set up data 
+data<-iris %>% filter(Species != "setosa") %>% droplevels()
+#make numeric
+group<-data$Species %>% as.numeric()
+
+#convert to (horrible idea "train", "test")
+set.seed(106)
+inTraining <- createDataPartition(group, p = 2/3, list = FALSE)
+train.index<-rep("test",nrow(data)) 
+train.index[inTraining]<-"train"
+
+mods<-make.OSC.PLS.model(group,
+                         pls.data=data %>% select(-Species),
+                         train.test.index = train.index,
+                         comp=2,OSC.comp=1, validation = "LOO",
+                         method="oscorespls", cv.scale=TRUE, progress=FALSE)
+#extract model
+final<-get.OSC.model(obj=mods,OSC.comp=1)
+
+#get performance for test set
+pred<-mods$predicted.Y[[2]] %>% matrix() %>%
+#predictions need to be made descreet
+  round(0)
+#constrained to original bounds
+pred[pred<0]<-1
+pred[pred>2]<-2
+obs<-mods$test.y
+#back convert from numeric
+obs<-obs %>% factor(.,labels=c("versicolor","verginica"))
+pred<-pred %>% factor(.,labels=c("versicolor","verginica"))
+
+table(pred,obs)
+
+```
+
+#### The performance does not look bad. Lets visualize the misclassified sample using PCA.
+```{r,warning=FALSE, message= FALSE}
+#PCA to visualize test and train samples
+args<-list(  pca.data       = data,
+            pca.algorithm   = "svd",
+            pca.components  = 2,
+            pca.center      = FALSE, #need to fix requirement...
+            pca.scaling     = "none"
+            )
+
+#calculate and view scree plot          
+res<-devium.pca.calculate(args,return="list",plot=TRUE)
+
+#set up plot
+#show groups
+group<-data$Species 
+group<-join.columns(data.frame(group,train.index),"_")
+#id misclassified samples
+id<-seq_along(1:nrow(data))
+id<-id[!id %in% inTraining]
+#mis
+miss<-id[obs != pred]
+tmp<-rep("_",length(group))
+tmp[miss]<-"wrong"
+group<-join.columns(data.frame(group,tmp),"_") %>% gsub("__","",.)
+
+p.args<-list( 
+            pca = res,
+            results = "scores",
+            color = data.frame(group),
+            label=FALSE,
+            group.bounds ="none",
+            size=5
+            )
+
+do.call("plot.PCA",p.args)
 
 
+```
 
+#### Now lets fit and evaluate a random forest model using the `caret` library. 
+```{r,warning=FALSE, message= FALSE}
+
+#create a classification model using random forests
+#generate training/test set
+group<-data$Species
+
+train.data <- data[ inTraining,]
+test.data  <- data[-inTraining,]
+train.y <- group[ inTraining] %>% droplevels()
+test.y <- group[ -inTraining] %>% droplevels()
+
+#set cross-validation parameters
+fitControl <- trainControl(
+                          method = "repeatedcv",
+                          number = 3,
+                          ## repeated ten times
+                          repeats = 3,
+                          classProbs = TRUE,
+                          summaryFunction = twoClassSummary
+                )
+
+
+#fit model to the training data
+set.seed(825)
+fit<- train(train.y ~ ., data = train.data,
+            method = "rf",
+            trControl = fitControl,
+            metric = "ROC",
+            tuneLength = 3  
+         )
+
+#fit to the trainning data
+print(fit)
+
+#predict RF
+#predict the test set
+pred<-predict(fit,newdata=test.data)
+prob<-predict(fit,newdata=test.data,type="prob")
+obs<-test.y
+table(pred,obs)
+
+#twoClassSummary(data=data.frame(obs,pred,prob),lev=levels(pred))
+```
+
+#### The random forest (RF) model does better than O-PLS, but this is pretty siple data set. From my experience RF is far more robust than O-PLS-DA for classification. It nicely handles multiple classes, is robust to over fitting and unlike O-PLS can be calculated in parallel.
