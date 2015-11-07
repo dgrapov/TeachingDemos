@@ -10,6 +10,12 @@ If you want to try out MetaMapR and DeviumWeb feel free to contact me at created
 * [MetaMapR](http://createdatasol.com/MetaMapR)
 * [DeviumWeb](http://createdatasol.com/DeviumWeb/)
 
+# Live examples
+I am experimenting with live streaming some of data analysis and programming work on twitch.
+<a href="http://www.twitch.tv/dgrapov/profile" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg" border="0">
+</a>
+
 #R Code Examples and More
 
 ## Data Analysis Examples
