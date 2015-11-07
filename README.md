@@ -6,17 +6,9 @@ TeachingDemos
 Bioinformatics related demos and tutorials using the R programming language.
 
 #Demos
-My [trial server](http://createdatasol.com/) is up !!!. If you want to test MetaMapR and DeviumWeb you can contact me at dgrapov at gmail.com.
+If you want to try out MetaMapR and DeviumWeb feel free to contact me at createdatsol at gmail.com. 
 * [MetaMapR](http://createdatasol.com/MetaMapR)
 * [DeviumWeb](http://createdatasol.com/DeviumWeb/)
-
-#Older Demos 
-(see above for current versions)
-* [MetaMapR](spark.rstudio.com/dgrapov/MetaMapR/)
-* [Data Visualization](http://spark.rstudio.com/dgrapov/Plotting/)
-* [Heatmaps and Hierarchical Cluster Analysis](http://spark.rstudio.com/dgrapov/Heatmap/)
-* [Principal Components Analysis](http://spark.rstudio.com/dgrapov/PCA/)
-* [Devium](https://github.com/dgrapov/DeviumWeb)
 
 #R Code Examples and More
 
@@ -35,9 +27,9 @@ My [trial server](http://createdatasol.com/) is up !!!. If you want to test Meta
 ## PLS
 * [Partial Least Squares (PLS)](https://github.com/dgrapov/TeachingDemos/wiki/Partial-Least-Squares) (fast and simple)
 
-## O-PLS/ O-PLS-DA
+## Predictive Modeling
 * [O-PLS Example](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Predictive%20Modeling/O-PLS/OPLS_example.md) (04/08/15)
-* [Model permutation testing and validation](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Predictive%20Modeling/Iris%20O-PLS-DA/O-PLS%20modeling%20of%20Iris%20data.md)
+* [O-PLS-DA compared to Random Forest](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Predictive%20Modeling/Iris%20O-PLS-DA/O-PLS_modeling_of_Iris_data.md) (updated 11/7/15)
 * [Comparing single to multiple Y models](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/OPLS/OPLS%20example.md)
 
 ## Database query and translation
