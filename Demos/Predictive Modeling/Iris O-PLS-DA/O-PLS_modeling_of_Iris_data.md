@@ -1,10 +1,8 @@
 Orthogonal Signal Correction Partial Least Squares (O-PLS) Discriminant Analysis (O-PLS-DA)
 ========================================================
 
-See here for more [O-PLS](https://raw.github.com/dgrapov/devium/master/R/Devium%20PLS%20%20and%20OPLS.r) methods or try [PLS](http://cran.r-project.org/web/packages/pls/index.html).
-
-
-
+#load devium functions from: https://github.com/dgrapov/devium/tree/master/R
+#TODO make a package...for now:
 ```r
 source("http://pastebin.com/raw.php?i=UyDBTA57") # source Devium
 ```
