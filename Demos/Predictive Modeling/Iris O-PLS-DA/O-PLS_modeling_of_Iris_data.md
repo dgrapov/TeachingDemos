@@ -1,8 +1,8 @@
 Orthogonal Signal Correction Partial Least Squares (O-PLS) Discriminant Analysis (O-PLS-DA)
 ========================================================
 
-#load devium functions from: https://github.com/dgrapov/devium/tree/master/R
-#TODO make a package...for now:
+##### load devium functions from: https://github.com/dgrapov/devium/tree/master/R
+TODO make a package...for now:
 ```r
 source("http://pastebin.com/raw.php?i=UyDBTA57") # source Devium
 ```
