@@ -359,4 +359,4 @@ table(pred,obs)
 #twoClassSummary(data=data.frame(obs,pred,prob),lev=levels(pred))
 ```
 
-#### The random forest (RF) model does better than O-PLS, but this is pretty siple data set. From my experience RF is far more robust than O-PLS-DA for classification. It nicely handles multiple classes, is robust to over fitting and unlike O-PLS can be calculated in parallel.
+#### The random forest (RF) model does better than O-PLS, but this is a pretty simple data set. From my experience RF is far more robust than O-PLS-DA for classification. It nicely handles multiple classes, is robust to over fitting and unlike O-PLS can be calculated in parallel.
