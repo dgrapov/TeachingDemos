@@ -7,10 +7,10 @@ TeachingDemos
 
 Bioinformatics related demos and tutorials using the R programming language.
 
-#Demos
+#Software
 If you want to try out MetaMapR and DeviumWeb feel free to contact me at createdatsol at gmail.com. 
-* [MetaMapR](http://createdatasol.com/MetaMapR)
-* [DeviumWeb](http://createdatasol.com/DeviumWeb/)
+* [MetaMapR](http://dgrapov.github.io/DeviumWeb/)
+* [DeviumWeb](http://dgrapov.github.io/MetaMapR/)
 
 # Live examples
 I am experimenting with live streaming some of my data analysis and programming work on twitch. :metal:
