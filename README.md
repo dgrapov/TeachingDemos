@@ -1,4 +1,3 @@
-[![paypal](https://raw.githubusercontent.com/dgrapov/CDS/gh-pages/www/images/donate.png)](http://createdatasol.com/)
 
 <iframe src="https://ghbtns.com/github-btn.html?user=dgrapov&repo=TeachingDemos&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 
@@ -8,14 +7,15 @@ TeachingDemos
 Bioinformatics related demos and tutorials using the R programming language.
 
 #Software
-If you want to try out MetaMapR and DeviumWeb feel free to contact me at createdatsol at gmail.com. 
 * [MetaMapR](http://dgrapov.github.io/DeviumWeb/)
 * [DeviumWeb](http://dgrapov.github.io/MetaMapR/)
 
+### Installation
+### <a href="http://createdatasol.com/"> www.createdatasol.com</a>
+
 # Live examples
-I am experimenting with live streaming some of my data analysis and programming work on twitch. :metal:
 <a href="http://www.twitch.tv/dgrapov/profile" target="_blank">
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg" border="0">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg" border="0", height="200", width="200">
 </a>
 
 #R Code Examples and More
