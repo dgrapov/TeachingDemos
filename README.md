@@ -6,11 +6,11 @@ TeachingDemos
 
 Bioinformatics related demos and tutorials using the R programming language.
 
-#Software
+## Software
 * [MetaMapR](http://dgrapov.github.io/DeviumWeb/)
 * [DeviumWeb](http://dgrapov.github.io/MetaMapR/)
 
-### Installation
+## Installation
 ### <a href="http://createdatasol.com/"> www.createdatasol.com</a>
 
 # Live examples
@@ -18,7 +18,7 @@ Bioinformatics related demos and tutorials using the R programming language.
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg" border="0", height="200", width="200">
 </a>
 
-#R Code Examples and More
+# R Code Examples and More
 
 ## Data Analysis Examples
 * [Metabolomic and Proteomic Data Analysis 2015](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Data%20Analysis%20Workflow/report/report.md)
