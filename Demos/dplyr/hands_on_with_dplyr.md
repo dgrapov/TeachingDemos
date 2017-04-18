@@ -845,7 +845,7 @@ Here are some additional functions which can be used with summarise.
 ![](images/summarise_2.png)
 
 *****
-##Group_by
+## Group_by
 Break the data sets into groups of rows.
 
 ![](images/group_by.png)
