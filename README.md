@@ -1,5 +1,4 @@
 
-<iframe src="https://ghbtns.com/github-btn.html?user=dgrapov&repo=TeachingDemos&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 
 TeachingDemos
 =============
@@ -15,7 +14,7 @@ Bioinformatics related demos and tutorials using the R programming language.
 
 # Live examples
 <a href="http://www.twitch.tv/dgrapov/profile" target="_blank">
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg" border="0", height="200", width="200">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg" border="0", height="100", width="100">
 </a>
 
 # R Code Examples and More
@@ -29,8 +28,9 @@ Bioinformatics related demos and tutorials using the R programming language.
 ## Statistical Analysis
 * [Covariate Adjustment](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Statistical%20Analysis/Covariate%20Adjustment.md)
 
-## PCA
-* [Principal Components Analysis (PCA)](https://github.com/dgrapov/TeachingDemos/wiki/Principal-Components-Analysis) (fast and simple)
+## Principal Components Analysis (PCA)
+* [pca and scores visualization on custom data](https://gist.github.com/dgrapov/2fd3027d2bd7f15884b2d40a82d50c06) (fast and simple)
+* [pca on mtcars](https://github.com/dgrapov/TeachingDemos/wiki/Principal-Components-Analysis) (fast and simple)
 
 ## PLS
 * [Partial Least Squares (PLS)](https://github.com/dgrapov/TeachingDemos/wiki/Partial-Least-Squares) (fast and simple)
