@@ -1,10 +1,8 @@
 Orthogonal Signal Correction Partial Least Squares (O-PLS) Discriminant Analysis (O-PLS-DA)
 ========================================================
 
-See here for more [O-PLS](https://raw.github.com/dgrapov/devium/master/R/Devium%20PLS%20%20and%20OPLS.r) methods or try [PLS](http://cran.r-project.org/web/packages/pls/index.html).
-
-
-
+##### load devium functions from: https://github.com/dgrapov/devium/tree/master/R
+TODO make a package...for now:
 ```r
 source("http://pastebin.com/raw.php?i=UyDBTA57") # source Devium
 ```
@@ -359,4 +357,4 @@ table(pred,obs)
 #twoClassSummary(data=data.frame(obs,pred,prob),lev=levels(pred))
 ```
 
-#### The random forest (RF) model does better than O-PLS, but this is pretty siple data set. From my experience RF is far more robust than O-PLS-DA for classification. It nicely handles multiple classes, is robust to over fitting and unlike O-PLS can be calculated in parallel.
+#### The random forest (RF) model does better than O-PLS, but this is a pretty simple data set. From my experience RF is far more robust than O-PLS-DA for classification. It nicely handles multiple classes, is robust to over fitting and unlike O-PLS can be calculated in parallel.
