@@ -20,6 +20,8 @@ Bioinformatics related demos and tutorials using the R programming language.
 ***
 
 # Blog
+![](imgs/blog.png)
+
 * ###  [Creative Data Science Blog](https://creativedatasolutions.github.io/cds.blog/)
 * ### [R programming, bioinformatics and data visualization](https://imdevsoftware.wordpress.com/)
 
