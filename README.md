@@ -5,15 +5,36 @@ TeachingDemos
 
 Bioinformatics related demos and tutorials using the R programming language.
 
-#Demos
+*** 
+
+# Courses 
+### [see all courses](https://creativedatasolutions.github.io/CDS.courses/)
+![](https://creativedatasolutions.github.io/R_programming_for_DS_beginner/imgs/course_logo.png)
+
+* ### [R programming for Data Science - a beginner's guide](https://creativedatasolutions.github.io/R_programming_for_DS_beginner/)
+* ### [Network mapping 101](https://creativedatasolutions.github.io/CDS.courses/courses/network_mapping_101/docs/)
+
+***
+
+# Blog
+* ###  [Creative Data Science Blog](https://creativedatasolutions.github.io/cds.blog/)
+* ### [R programming, bioinformatics and data visualization](https://imdevsoftware.wordpress.com/)
+
+***
+
+# Demos
 If you want to try out MetaMapR and DeviumWeb feel free to contact me at createdatsol at gmail.com. 
 * [MetaMapR](http://createdatasol.com/MetaMapR)
 * [DeviumWeb](http://createdatasol.com/DeviumWeb/)
 
-#R Code Examples and More
+***
+
+# R Code Examples and More
 
 ## Data Analysis Examples
 * [Metabolomic and Proteomic Data Analysis 2015](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/Data%20Analysis%20Workflow/report/report.md)
+
+***
 
 ## Data Wrangling
 * [dplyr tutorial: verbs and split-apply](https://github.com/dgrapov/TeachingDemos/blob/master/Demos/dplyr/hands_on_with_dplyr.md)
